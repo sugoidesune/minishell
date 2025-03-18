@@ -6,7 +6,7 @@
 /*   By: mmusic <mmusic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 19:41:13 by mmusic            #+#    #+#             */
-/*   Updated: 2025/03/17 20:09:12 by mmusic           ###   ########.fr       */
+/*   Updated: 2025/03/18 16:34:57 by mmusic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,16 @@ int ft_strlen(char *str);
 
 // Token utils
 t_token *new_token(t_token_type type, char *value);
+t_token *add_token_to_list(t_token *head, t_token **current, t_token_type type, char *value);
+void free_tokens(t_token *head);
+
+// Lexer functions
+t_token *lexer(char *input);
+t_token *process_word(char **str, t_token *head, t_token **token);
+t_token *process_variable(char **str, t_token *head, t_token **token);
+
+// Redirect utils
+t_token *process_redirect_in(char **str, t_token *head, t_token **token);
+t_token *process_redirect_out(char **str, t_token *head, t_token **token);
 
 #endif
