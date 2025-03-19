@@ -1,39 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   token_utils.c                                      :+:      :+:    :+:   */
+/*   subtoken_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmusic <mmusic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/17 19:57:49 by mmusic            #+#    #+#             */
+/*   Created: 2025/03/19 17:30:00 by mmusic            #+#    #+#             */
 /*   Updated: 2025/03/19 17:16:25 by mmusic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
 
-t_token *new_token(t_token_type type, char *value)
+t_subtoken *new_subtoken(t_token_type type, char *value)
 {
-    t_token *token;
+    t_subtoken *subtoken;
 
-    token = malloc(sizeof(t_token));
-    if (!token)
+    subtoken = malloc(sizeof(t_subtoken));
+    if (!subtoken)
     {
         perror("malloc");
         exit(1);
     }
-    token->type = type;
-    token->value = ft_strdup(value);
-    token->subtoken = NULL;
-    token->next = NULL;
-    return (token);
+    subtoken->type = type;
+    subtoken->value = ft_strdup(value);
+    subtoken->next = NULL;
+    return (subtoken);
 }
 
-t_token *add_token_to_list(t_token *head, t_token **current, t_token_type type, char *value)
+t_subtoken *add_subtoken_to_list(t_subtoken *head, t_subtoken **current, t_token_type type, char *value)
 {
-    t_token *new;
+    t_subtoken *new;
 
-    new = new_token(type, value);
+    new = new_subtoken(type, value);
     if (!head)
     {
         head = new;
@@ -47,17 +46,15 @@ t_token *add_token_to_list(t_token *head, t_token **current, t_token_type type, 
     return (head);
 }
 
-void free_tokens(t_token *head)
+void free_subtokens(t_subtoken *head)
 {
-    t_token *temp;
-    t_token *next;
+    t_subtoken *temp;
+    t_subtoken *next;
 
     temp = head;
     while (temp)
     {
         next = temp->next;
-        if (temp->subtoken)
-            free_subtokens(temp->subtoken);
         free(temp->value);
         free(temp);
         temp = next;

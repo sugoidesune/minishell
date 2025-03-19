@@ -6,7 +6,7 @@
 /*   By: mmusic <mmusic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 19:53:32 by mmusic            #+#    #+#             */
-/*   Updated: 2025/03/19 16:23:34 by mmusic           ###   ########.fr       */
+/*   Updated: 2025/03/19 17:16:25 by mmusic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,4 +73,10 @@ char *strndup(const char *s, size_t n)
     
     result[len] = '\0';
     return result;
+}
+
+void skip_whitespace(char **str)
+{
+	while (**str && (**str == ' ' || **str == '\t'))
+		(*str)++;
 }

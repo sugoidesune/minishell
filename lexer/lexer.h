@@ -6,7 +6,7 @@
 /*   By: mmusic <mmusic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 19:41:13 by mmusic            #+#    #+#             */
-/*   Updated: 2025/03/19 16:20:47 by mmusic           ###   ########.fr       */
+/*   Updated: 2025/03/19 17:52:15 by mmusic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,28 +45,39 @@ typedef struct s_token {
     struct s_token *next;  
 } t_token;
 
-// Utils
+// String utils (utils.c)
 char *ft_strdup(char *value);
 int ft_strlen(char *str);
 char *strndup(const char *s, size_t n);
+void skip_whitespace(char **str);
 
-// Token utils
+// Token utils (token_utils.c)
 t_token *new_token(t_token_type type, char *value);
 t_token *add_token_to_list(t_token *head, t_token **current, t_token_type type, char *value);
 void free_tokens(t_token *head);
 
-// Subtoken utils
+// Subtoken utils (subtoken_utils.c)
 t_subtoken *new_subtoken(t_token_type type, char *value);
 t_subtoken *add_subtoken_to_list(t_subtoken *head, t_subtoken **current, t_token_type type, char *value);
+void free_subtokens(t_subtoken *head);
 
-// Lexer functions
-t_token *lexer(char *input);
-t_token *process_word(char **str, t_token *head, t_token **token);
-t_token *process_variable(char **str, t_token *head, t_token **token);
+// Double quote processing (double_quote_utils.c)
+void extract_quoted_content(char **str, char **quoted_str);
+void add_word_subtoken(char *quoted_str, size_t start, size_t end, t_subtoken **head, t_subtoken **current);
+size_t process_variable_in_quotes(char *quoted_str, size_t i, t_subtoken **head, t_subtoken **current);
+t_subtoken *parse_quoted_content(char *quoted_str);
 t_token *process_double_quotes(char **str, t_token *head, t_token **token);
 
-// Redirect utils
+// Redirect utils (redirect_utils.c)
 t_token *process_redirect_in(char **str, t_token *head, t_token **token);
 t_token *process_redirect_out(char **str, t_token *head, t_token **token);
+
+// Processing functions (process_utils.c)
+t_token *process_word(char **str, t_token *head, t_token **token);
+t_token *process_variable(char **str, t_token *head, t_token **token);
+
+// Lexer main function (lexer.c)
+t_token *lexer(char *input);
+void print_token_info(t_token *token);
 
 #endif
