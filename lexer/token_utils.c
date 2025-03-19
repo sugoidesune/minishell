@@ -6,7 +6,7 @@
 /*   By: mmusic <mmusic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 19:57:49 by mmusic            #+#    #+#             */
-/*   Updated: 2025/03/19 16:23:35 by mmusic           ###   ########.fr       */
+/*   Updated: 2025/03/19 17:13:16 by mmusic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,28 +81,34 @@ t_subtoken *add_subtoken_to_list(t_subtoken *head, t_subtoken **current, t_token
     return (head);
 }
 
-void free_tokens(t_token *head)
+static void free_subtokens(t_subtoken *head)
 {
-    t_token     *temp;
-    t_subtoken  *subtemp;
-    t_subtoken  *subtemp2;
+    t_subtoken *temp;
+    t_subtoken *next;
 
-    while (head)
+    temp = head;
+    while (temp)
     {
-        temp = head;
-        head = head->next;
-        if(temp->subtoken)
-        {
-            subtemp = temp->subtoken;
-            while(subtemp)
-            {
-                subtemp2 = subtemp;
-                subtemp = subtemp->next;
-                free(subtemp2->value);
-                free(subtemp2);
-            }
-        }
+        next = temp->next;
         free(temp->value);
         free(temp);
+        temp = next;
+    }
+}
+
+void free_tokens(t_token *head)
+{
+    t_token *temp;
+    t_token *next;
+
+    temp = head;
+    while (temp)
+    {
+        next = temp->next;
+        if (temp->subtoken)
+            free_subtokens(temp->subtoken);
+        free(temp->value);
+        free(temp);
+        temp = next;
     }
 }
