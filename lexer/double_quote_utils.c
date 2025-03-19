@@ -6,7 +6,7 @@
 /*   By: mmusic <mmusic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 17:30:00 by mmusic            #+#    #+#             */
-/*   Updated: 2025/03/19 17:16:25 by mmusic           ###   ########.fr       */
+/*   Updated: 2025/03/19 18:54:16 by mmusic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ size_t process_variable_in_quotes(char *quoted_str, size_t i,
 		// Handle lone $ in quotes
 		*head = add_subtoken_to_list(*head, current, TOKEN_WORD, "$");
 	}
-	
 	return i;
 }
 

@@ -1,19 +1,27 @@
 CC = cc
 FLAGS = -Wall -Wextra -Werror -g
 NAME = lexer
+OBJ_DIR = obj
 SRC = lexer.c redirect_utils.c utils.c token_utils.c double_quote_utils.c process_utils.c subtoken_utils.c
-OBJ = $(SRC:.c=.o)
+OBJ = $(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
+$(NAME): $(OBJ_DIR) $(OBJ)
 	$(CC) $(FLAGS) -o $(NAME) $(OBJ)
 
-%.o: %.c
-	$(CC) $(FLAGS) -c $<
+$(OBJ_DIR):
+	mkdir -p $(OBJ_DIR)
+
+$(OBJ_DIR)/%.o: %.c
+	$(CC) $(FLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJ)
+	rm -rf $(OBJ_DIR)
 
 fclean: clean
 	rm -f $(NAME)
+
+re: fclean all
+
+.PHONY: all clean fclean re
