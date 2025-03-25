@@ -6,7 +6,7 @@
 /*   By: mmusic <mmusic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 17:30:00 by mmusic            #+#    #+#             */
-/*   Updated: 2025/03/19 18:54:16 by mmusic           ###   ########.fr       */
+/*   Updated: 2025/03/25 15:21:57 by mmusic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void extract_quoted_content(char **str, char **quoted_str)
 		return;
 	}
 	
-	*quoted_str = strndup(start, *str - start);
+	*quoted_str = ft_strndup(start, *str - start);
 }
 
 void add_word_subtoken(char *quoted_str, size_t start, size_t end, 
@@ -40,7 +40,7 @@ void add_word_subtoken(char *quoted_str, size_t start, size_t end,
 
 	if (end > start)
 	{
-		content = strndup(quoted_str + start, end - start);
+		content = ft_strndup(quoted_str + start, end - start);
 		*head = add_subtoken_to_list(*head, current, TOKEN_WORD, content);
 		free(content);
 	}
@@ -65,7 +65,7 @@ size_t process_variable_in_quotes(char *quoted_str, size_t i,
 	// Add variable as subtoken
 	if (i > word_start)
 	{
-		content = strndup(quoted_str + word_start, i - word_start);
+		content = ft_strndup(quoted_str + word_start, i - word_start);
 		*head = add_subtoken_to_list(*head, current, TOKEN_VARIABLE, content);
 		free(content);
 	}

@@ -6,7 +6,7 @@
 /*   By: mmusic <mmusic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 19:53:32 by mmusic            #+#    #+#             */
-/*   Updated: 2025/03/19 17:16:25 by mmusic           ###   ########.fr       */
+/*   Updated: 2025/03/25 15:23:16 by mmusic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,26 +51,22 @@ char *ft_strdup(char *value)
     return (result);
 }
 
-char *strndup(const char *s, size_t n)
+char *ft_strndup(const char *s, size_t n)
 {
-    size_t len = 0;
+    size_t len;
     char *result;
-    
-    // Find length of s, but not more than n
+
+    len = 0;    
     while (len < n && s[len])
-        len++;
-    
+        len++;  
     result = malloc(len + 1);
     if (!result)
     {
         perror("malloc");
         exit(1);
     }
-    
-    // Copy the string
     for (size_t i = 0; i < len; i++)
         result[i] = s[i];
-    
     result[len] = '\0';
     return result;
 }

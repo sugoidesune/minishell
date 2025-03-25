@@ -6,7 +6,7 @@
 /*   By: mmusic <mmusic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 19:41:13 by mmusic            #+#    #+#             */
-/*   Updated: 2025/03/19 17:52:15 by mmusic           ###   ########.fr       */
+/*   Updated: 2025/03/25 15:22:01 by mmusic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ typedef struct s_token {
 // String utils (utils.c)
 char *ft_strdup(char *value);
 int ft_strlen(char *str);
-char *strndup(const char *s, size_t n);
+char *ft_strndup(const char *s, size_t n);
 void skip_whitespace(char **str);
 
 // Token utils (token_utils.c)
