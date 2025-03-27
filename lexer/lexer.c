@@ -6,7 +6,7 @@
 /*   By: mmusic <mmusic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 19:43:02 by mmusic            #+#    #+#             */
-/*   Updated: 2025/03/19 17:16:25 by mmusic           ###   ########.fr       */
+/*   Updated: 2025/03/27 18:22:03 by mmusic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,25 +63,6 @@ void print_token_info(t_token *token)
 	}
 }
 
-int	main(int argc, char **argv)
-{
-	t_token	*token;
-    t_token	*head;
-
-    token = NULL;
-    head = NULL;
-    if (argc != 2)
-    {
-		printf("Usage: %s \"command\"\n", argv[0]);
-		return (1);
-	}
-	head = lexer(argv[1]);
-	token = head;
-	while (token)
-	{
-		print_token_info(token);
-		token = token->next;
-    }
-	free_tokens(head);	
-	return (0);
-}
+/* 
+   Removed main function here as it's now in the root directory's main.c
+*/
