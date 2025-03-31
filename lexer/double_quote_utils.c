@@ -6,7 +6,7 @@
 /*   By: mmusic <mmusic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 17:30:00 by mmusic            #+#    #+#             */
-/*   Updated: 2025/03/25 15:21:57 by mmusic           ###   ########.fr       */
+/*   Updated: 2025/03/31 17:10:02 by mmusic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,16 @@
 void extract_quoted_content(char **str, char **quoted_str)
 {
 	char *start;
-
+	char *prev;
 	(*str)++; // Skip the opening double quote
 	start = *str;
 	
 	// Find closing double quote
-	while (**str && **str != '"')
+	while (**str && **str != '"' && *prev != '\\')
+	{
+		prev = *str;
 		(*str)++;
+	}
 	
 	if (!**str) // If no closing quote is found
 	{
@@ -79,12 +82,20 @@ size_t process_variable_in_quotes(char *quoted_str, size_t i,
 
 t_subtoken *parse_quoted_content(char *quoted_str)
 {
-	t_subtoken *head = NULL;
-	t_subtoken *current = NULL;
-	size_t i = 0, word_start = 0;
+	t_subtoken	*head = NULL;
+	t_subtoken	*current = NULL;
+	size_t		i = 0;
+	size_t		word_start = 0;
 
 	while (quoted_str[i])
 	{
+		if (quoted_str[i] == '\\' && (quoted_str[i + 1] == '"' || quoted_str[i + 1] == '$')) {
+			i++; // Skip '\'
+			char escaped[2] = {quoted_str[i], '\0'};
+			add_subtoken_to_list(head, &current, TOKEN_WORD, escaped);
+			i++;
+			word_start = i;
+		}
 		if (quoted_str[i] == '$')
 		{
 			add_word_subtoken(quoted_str, word_start, i, &head, &current);

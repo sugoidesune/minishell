@@ -9,7 +9,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/lexer",
-            "args": ["\$hello world"],
+            "args": ["a \"b\" c"],
             "stopAtEntry": true,
             "cwd": "${workspaceFolder}",
             "environment": [],
