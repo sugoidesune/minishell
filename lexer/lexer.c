@@ -6,7 +6,7 @@
 /*   By: mmusic <mmusic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 19:43:02 by mmusic            #+#    #+#             */
-/*   Updated: 2025/03/27 18:22:03 by mmusic           ###   ########.fr       */
+/*   Updated: 2025/04/01 18:39:45 by mmusic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ t_token	*lexer(char *input)
 		else if (*str == '>')
 			head = process_redirect_out(&str, head, &token);
 		else if (*str == '\'')
-			head = add_token_to_list(head, &token, TOKEN_SINGLE_QUOTE, "'");
-		else if (*str == '"')
+			head = process_single_quotes(&str, head, &token);
+		else if (*str == '"')	
 			head = process_double_quotes(&str, head, &token);
 		else if(*str == '$')
 			head = process_variable(&str, head, &token);

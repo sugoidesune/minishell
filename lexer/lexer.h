@@ -6,7 +6,7 @@
 /*   By: mmusic <mmusic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 19:41:13 by mmusic            #+#    #+#             */
-/*   Updated: 2025/03/27 18:20:26 by mmusic           ###   ########.fr       */
+/*   Updated: 2025/04/01 18:42:32 by mmusic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ t_token *process_redirect_out(char **str, t_token *head, t_token **token);
 // Processing functions (process_utils.c)
 t_token *process_word(char **str, t_token *head, t_token **token);
 t_token *process_variable(char **str, t_token *head, t_token **token);
+
+t_token *process_single_quotes(char **str, t_token *head, t_token **token);
 
 // Lexer main function (lexer.c)
 t_token *lexer(char *input);
