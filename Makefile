@@ -6,7 +6,7 @@
 #    By: mmusic <mmusic@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/25 16:00:00 by mmusic            #+#    #+#              #
-#    Updated: 2025/04/01 18:44:06 by mmusic           ###   ########.fr        #
+#    Updated: 2025/04/10 17:07:33 by mmusic           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,8 @@ LEXER_SRC = \
 	double_quote_utils.c \
 	process_utils.c \
 	subtoken_utils.c \
-	single_quote_utils.c
+	single_quote_utils.c \
+	validate_input.c
 
 PARSER_SRC = 
 

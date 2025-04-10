@@ -6,7 +6,7 @@
 /*   By: mmusic <mmusic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 19:43:02 by mmusic            #+#    #+#             */
-/*   Updated: 2025/04/01 18:39:45 by mmusic           ###   ########.fr       */
+/*   Updated: 2025/04/10 17:41:38 by mmusic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,18 @@ t_token	*lexer(char *input)
 	head = NULL;
 	token = NULL;
 	str = input;
+	if (!input)
+		return (NULL);
+	if (ft_strlen(input) == 0)
+	{
+		write(2, "Error: Empty input\n", 20);
+		return (NULL);
+	}
+	if (validate_quotes(input) == -1)
+	{
+		write(2, "Error: Unmatched quotes\n", 24);
+		return (NULL);
+	}
 	while (*str)
 	{
 		skip_whitespace(&str);
@@ -62,7 +74,3 @@ void print_token_info(t_token *token)
 		}
 	}
 }
-
-/* 
-   Removed main function here as it's now in the root directory's main.c
-*/

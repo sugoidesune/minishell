@@ -6,7 +6,7 @@
 /*   By: mmusic <mmusic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 19:41:13 by mmusic            #+#    #+#             */
-/*   Updated: 2025/04/01 18:42:32 by mmusic           ###   ########.fr       */
+/*   Updated: 2025/04/10 17:06:13 by mmusic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,5 +81,6 @@ t_token *process_single_quotes(char **str, t_token *head, t_token **token);
 // Lexer main function (lexer.c)
 t_token *lexer(char *input);
 void print_token_info(t_token *token);
+int validate_quotes(char *input);
 
 #endif
