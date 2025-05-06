@@ -1,0 +1,1669 @@
+main() <int main (int argc, char **argv, char **env) at src/main.c:48>:
+    printf()
+    init_data() <void init_data (t_mini *data, char **env) at src/main.c:32>:
+        strarr_cpy() <char **strarr_cpy (char **strarr) at src/utils/strarr_utils.c:88>:
+            ft_calloc() <void *ft_calloc (size_t num, size_t size) at libs/libft/ft_calloc.c:15>:
+                malloc()
+            strarr_len() <size_t strarr_len (char **strarr) at src/utils/strarr_utils.c:58>
+            exit()
+            skip_empty_line() <int skip_empty_line (char **strarr, int *i) at src/utils/strarr_utils.c:78>
+            ft_strdup() <char *ft_strdup (const char *s) at libs/libft/ft_strdup.c:15>:
+                ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                malloc()
+            free_strarr() <void free_strarr (char **strarr) at src/utils/free_memory.c:15>:
+                free()
+        exit()
+        env_list() <t_env *env_list (char **env) at src/builtins/utils/env_list.c:44>:
+            separate_varcont() <int separate_varcont (char *line, t_content *content) at src/builtins/utils/env_list.c:71>:
+                ft_strchr() <char *ft_strchr (const char *string, int c) at libs/libft/ft_strchr.c:15>:
+                ft_strndup() <char *ft_strndup (const char *s, size_t n) at src/builtins/functions/ft_unset.c:41>:
+                    ft_strnlen() <size_t ft_strnlen (const char *string, size_t max) at src/builtins/functions/ft_unset.c:31>
+                    malloc()
+                    ft_memcpy() <void *ft_memcpy (void *dest, const void *src, size_t n) at libs/libft/ft_memcpy.c:15>:
+                ft_strdup() <char *ft_strdup (const char *s) at libs/libft/ft_strdup.c:15>:
+                    ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                    malloc()
+                free()
+            free_env_list() <void free_env_list (t_env *env) at src/builtins/utils/free_utils.c:15>:
+                free()
+            free_t_content() <void free_t_content (t_content *content) at src/builtins/utils/free_utils.c:31>:
+                free()
+            fill_env_list() <void fill_env_list (t_env **env_cpy, const char *variable, const char *content) at src/builtins/utils/env_list.c:110>:
+                malloc()
+                write() <ssize_t write (int __fd, const void *__buf, size_t __n) at /usr/include/unistd.h:378>
+                exit()
+                ft_strdup() <char *ft_strdup (const char *s) at libs/libft/ft_strdup.c:15>:
+                    ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                    malloc()
+                mark_cont() <char *mark_cont (char *content) at src/builtins/utils/env_list.c:94>:
+                    ft_strdup() <char *ft_strdup (const char *s) at libs/libft/ft_strdup.c:15>:
+                        ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                        malloc()
+                add_last_node() <void add_last_node (t_env **env_cpy, t_env *new_node) at src/builtins/utils/list_utils.c:15>:
+                    ft_last_node() <t_env *ft_last_node (t_env *env_cpy) at src/builtins/utils/list_utils.c:29>
+        set_pwd() <void set_pwd (t_mini *data, char **env) at src/main.c:17>:
+            ft_strncmp() <int ft_strncmp (const char *str1, const char *str2, size_t n) at libs/libft/ft_strncmp.c:15>:
+            ft_substr() <char *ft_substr (char const *s, unsigned int start, size_t len) at libs/libft/ft_substr.c:15>:
+                ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                ft_strdup() <char *ft_strdup (const char *s) at libs/libft/ft_strdup.c:15>:
+                    ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                    malloc()
+                malloc()
+            ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+        init_signals() <void init_signals (void) at src/signals.c:54>:
+            event() <int event (void) at src/signals.c:30>
+            handle_sigint() <void handle_sigint (int s) at src/signals.c:35>:
+                printf()
+                rl_on_new_line()
+                rl_replace_line()
+                rl_redisplay()
+            sigemptyset()
+            sigaction() <const struct sigaction at /usr/include/signal.h:243>
+    mini_loop() <void mini_loop (t_mini *data) at src/mini_loop.c:63>:
+        clear_data() <void clear_data (t_mini *data) at src/mini_loop.c:15>:
+            free()
+            free_lexer_list() <void free_lexer_list (t_lexer **lexer_list) at src/utils/free_memory.c:44>:
+                free_node_lexer() <void free_node_lexer (t_lexer **node) at src/lexer/list_utils_lexer.c:15>:
+                    free()
+            free_parser_list() <void free_parser_list (t_parser **parser_list) at src/utils/free_memory.c:29>:
+                free_node_parser() <void free_node_parser (t_parser **node) at src/parser/list_utils_parser.c:30>:
+                    free_strarr() <void free_strarr (char **strarr) at src/utils/free_memory.c:15>:
+                        free()
+                    free()
+        readline()
+        ft_putstr_fd() <void ft_putstr_fd (char *s, int fd) at libs/libft/ft_putstr_fd.c:15>:
+            write() <ssize_t write (int __fd, const void *__buf, size_t __n) at /usr/include/unistd.h:378>
+            ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+        exit()
+        continue_case() <int continue_case (t_mini *data, char *line) at src/mini_loop.c:41>:
+            count_quotes() <int count_quotes (t_mini *data, char *line) at src/lexer/quotes.c:57>:
+                ft_putstr_fd() <void ft_putstr_fd (char *s, int fd) at libs/libft/ft_putstr_fd.c:15>:
+                    write() <ssize_t write (int __fd, const void *__buf, size_t __n) at /usr/include/unistd.h:378>
+                    ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+            is_whitespace() <int is_whitespace (char c) at src/utils/str_utils.c:33>
+        add_history()
+        read_token() <void read_token (t_mini *data) at src/lexer/lexer.c:15>:
+            ft_strtrim() <char *ft_strtrim (char const *s1, char const *set) at libs/libft/ft_strtrim.c:84>:
+                ft_strdup() <char *ft_strdup (const char *s) at libs/libft/ft_strdup.c:15>:
+                    ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                    malloc()
+                string_start() <int string_start (char const *s1, char const *set) at libs/libft/ft_strtrim.c:16>
+                string_end() <int string_end (char const *s1, char const *set) at libs/libft/ft_strtrim.c:43>:
+                    ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                malloc()
+                fill_string() <void fill_string (char const *s1, char *new_str, int start, int end) at libs/libft/ft_strtrim.c:70>
+            free()
+            is_whitespace() <int is_whitespace (char c) at src/utils/str_utils.c:33>
+            store_token() <int store_token (char *input, t_mini *data) at src/lexer/store_tokens.c:82>:
+                store_left_brackets() <int store_left_brackets (char *input, t_lexer **token_list) at src/lexer/store_tokens.c:35>:
+                    new_node_lexer() <t_lexer *new_node_lexer (char *str, int type) at src/lexer/list_utils_lexer.c:70>:
+                        malloc()
+                    add_node_lexer() <void add_node_lexer (t_lexer *new_node, t_lexer **token_list) at src/lexer/list_utils_lexer.c:53>
+                store_right_brackets() <int store_right_brackets (char *input, t_lexer **token_list) at src/lexer/store_tokens.c:16>:
+                    new_node_lexer() <t_lexer *new_node_lexer (char *str, int type) at src/lexer/list_utils_lexer.c:70>:
+                        malloc()
+                    add_node_lexer() <void add_node_lexer (t_lexer *new_node, t_lexer **token_list) at src/lexer/list_utils_lexer.c:53>
+                new_node_lexer() <t_lexer *new_node_lexer (char *str, int type) at src/lexer/list_utils_lexer.c:70>:
+                    malloc()
+                add_node_lexer() <void add_node_lexer (t_lexer *new_node, t_lexer **token_list) at src/lexer/list_utils_lexer.c:53>
+                store_word() <int store_word (char *input, t_lexer **token_list) at src/lexer/store_tokens.c:54>:
+                    is_whitespace() <int is_whitespace (char c) at src/utils/str_utils.c:33>
+                    new_node_lexer() <t_lexer *new_node_lexer (char *str, int type) at src/lexer/list_utils_lexer.c:70>:
+                        malloc()
+                    ft_substr() <char *ft_substr (char const *s, unsigned int start, size_t len) at libs/libft/ft_substr.c:15>:
+                        ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                        ft_strdup() <char *ft_strdup (const char *s) at libs/libft/ft_strdup.c:15>:
+                            ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                            malloc()
+                        malloc()
+                    add_node_lexer() <void add_node_lexer (t_lexer *new_node, t_lexer **token_list) at src/lexer/list_utils_lexer.c:53>
+            free_data_and_exit() <void free_data_and_exit (t_mini *data, int exit_code) at src/utils/free_memory.c:59>:
+                free()
+                free_strarr() <void free_strarr (char **strarr) at src/utils/free_memory.c:15>:
+                    free()
+                free_lexer_list() <void free_lexer_list (t_lexer **lexer_list) at src/utils/free_memory.c:44>:
+                    free_node_lexer() <void free_node_lexer (t_lexer **node) at src/lexer/list_utils_lexer.c:15>:
+                        free()
+                free_parser_list() <void free_parser_list (t_parser **parser_list) at src/utils/free_memory.c:29>:
+                    free_node_parser() <void free_node_parser (t_parser **node) at src/parser/list_utils_parser.c:30>:
+                        free_strarr() <void free_strarr (char **strarr) at src/utils/free_memory.c:15>:
+                            free()
+                        free()
+                free_env_list() <void free_env_list (t_env *env) at src/builtins/utils/free_utils.c:15>:
+                    free()
+                exit()
+        unexpected_token_error() <int unexpected_token_error (t_mini *data, t_lexer *node) at src/parser/parser_utils.c:26>:
+            ft_putstr_fd() <void ft_putstr_fd (char *s, int fd) at libs/libft/ft_putstr_fd.c:15>:
+                write() <ssize_t write (int __fd, const void *__buf, size_t __n) at /usr/include/unistd.h:378>
+                ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+        error_check() <t_lexer *error_check (t_mini *data) at src/parser/parser_utils.c:43>
+        parser() <void parser (t_mini *data) at src/parser/parser.c:110>:
+            new_node_parser() <t_parser *new_node_parser (char *cmd) at src/parser/list_utils_parser.c:59>:
+                malloc()
+                check_builtin() <int check_builtin (char *cmd) at src/parser/parser_utils.c:14>:
+                    ft_strcmp() <int ft_strcmp (char *s1, char *s2) at src/utils/str_utils.c:74>
+            free_data_and_exit() <void free_data_and_exit (t_mini *data, int exit_code) at src/utils/free_memory.c:59>:
+                free()
+                free_strarr() <void free_strarr (char **strarr) at src/utils/free_memory.c:15>:
+                    free()
+                free_lexer_list() <void free_lexer_list (t_lexer **lexer_list) at src/utils/free_memory.c:44>:
+                    free_node_lexer() <void free_node_lexer (t_lexer **node) at src/lexer/list_utils_lexer.c:15>:
+                        free()
+                free_parser_list() <void free_parser_list (t_parser **parser_list) at src/utils/free_memory.c:29>:
+                    free_node_parser() <void free_node_parser (t_parser **node) at src/parser/list_utils_parser.c:30>:
+                        free_strarr() <void free_strarr (char **strarr) at src/utils/free_memory.c:15>:
+                            free()
+                        free()
+                free_env_list() <void free_env_list (t_env *env) at src/builtins/utils/free_utils.c:15>:
+                    free()
+                exit()
+            store_commands() <t_lexer *store_commands (t_mini *data, t_lexer *tmp, t_parser **parser_node) at src/parser/parser.c:60>:
+                handle_redirections() <t_lexer *handle_redirections (t_mini *data, t_lexer *lex_node, t_parser *node) at src/parser/parser.c:32>:
+                    store_redirection() <t_lexer *store_redirection (t_lexer **token, t_parser **pars_node, t_mini *data) at src/parser/parser.c:15>:
+                        ft_strdup() <char *ft_strdup (const char *s) at libs/libft/ft_strdup.c:15>:
+                            ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                            malloc()
+                        free_data_and_exit() <void free_data_and_exit (t_mini *data, int exit_code) at src/utils/free_memory.c:59>:
+                            free()
+                            free_strarr() <void free_strarr (char **strarr) at src/utils/free_memory.c:15>:
+                                free()
+                            free_lexer_list() <void free_lexer_list (t_lexer **lexer_list) at src/utils/free_memory.c:44>:
+                                free_node_lexer() <void free_node_lexer (t_lexer **node) at src/lexer/list_utils_lexer.c:15>:
+                                    free()
+                            free_parser_list() <void free_parser_list (t_parser **parser_list) at src/utils/free_memory.c:29>:
+                                free_node_parser() <void free_node_parser (t_parser **node) at src/parser/list_utils_parser.c:30>:
+                                    free_strarr() <void free_strarr (char **strarr) at src/utils/free_memory.c:15>:
+                                        free()
+                                    free()
+                            free_env_list() <void free_env_list (t_env *env) at src/builtins/utils/free_utils.c:15>:
+                                free()
+                            exit()
+                        new_node_lexer() <t_lexer *new_node_lexer (char *str, int type) at src/lexer/list_utils_lexer.c:70>:
+                            malloc()
+                        add_node_lexer() <void add_node_lexer (t_lexer *new_node, t_lexer **token_list) at src/lexer/list_utils_lexer.c:53>
+                        delete_redirection_lexer() <t_lexer *delete_redirection_lexer (t_mini *data, t_lexer **node) at src/lexer/list_utils_lexer.c:29>:
+                            free()
+                count_commands() <int count_commands (t_mini *data, t_lexer *tmp) at src/parser/parser_utils.c:70>
+                malloc()
+                free_data_and_exit() <void free_data_and_exit (t_mini *data, int exit_code) at src/utils/free_memory.c:59>:
+                    free()
+                    free_strarr() <void free_strarr (char **strarr) at src/utils/free_memory.c:15>:
+                        free()
+                    free_lexer_list() <void free_lexer_list (t_lexer **lexer_list) at src/utils/free_memory.c:44>:
+                        free_node_lexer() <void free_node_lexer (t_lexer **node) at src/lexer/list_utils_lexer.c:15>:
+                            free()
+                    free_parser_list() <void free_parser_list (t_parser **parser_list) at src/utils/free_memory.c:29>:
+                        free_node_parser() <void free_node_parser (t_parser **node) at src/parser/list_utils_parser.c:30>:
+                            free_strarr() <void free_strarr (char **strarr) at src/utils/free_memory.c:15>:
+                                free()
+                            free()
+                    free_env_list() <void free_env_list (t_env *env) at src/builtins/utils/free_utils.c:15>:
+                        free()
+                    exit()
+                ft_strdup() <char *ft_strdup (const char *s) at libs/libft/ft_strdup.c:15>:
+                    ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                    malloc()
+            add_node_parser() <void add_node_parser (t_parser *new_node, t_parser **parser_list) at src/parser/list_utils_parser.c:76>
+            remove_pipe() <t_lexer *remove_pipe (t_mini *data, t_lexer *tmp) at src/parser/parser.c:88>:
+                free()
+        expander() <int expander (t_mini *data) at src/expander/expander.c:108>:
+            ft_strcmp() <int ft_strcmp (char *s1, char *s2) at src/utils/str_utils.c:74>
+            expand_string() <void expand_string (t_mini *data, char **string) at src/expander/expander.c:40>:
+                ft_strdup() <char *ft_strdup (const char *s) at libs/libft/ft_strdup.c:15>:
+                    ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                    malloc()
+                env_expand() <char *env_expand (t_mini *data, char **tmp, char **string) at src/expander/expander.c:15>:
+                    is_whitespace() <int is_whitespace (char c) at src/utils/str_utils.c:33>
+                    free()
+                    handle_question_mark() <char *handle_question_mark (t_mini *data, char *string, int start, int exit_code) at src/expander/non_env_expand.c:42>:
+                        ft_itoa() <char *ft_itoa (int n) at libs/libft/ft_itoa.c:56>:
+                            count_digits() <int count_digits (long nb) at libs/libft/ft_itoa.c:15>
+                            malloc()
+                            fill_str() <void fill_str (char *str, int digits, long nb) at libs/libft/ft_itoa.c:32>
+                        ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                        expand_and_replace_qm() <char *expand_and_replace_qm (t_mini *data, char *string, int start, char *exit_code) at src/expander/non_env_expand.c:15>:
+                            ft_substr() <char *ft_substr (char const *s, unsigned int start, size_t len) at libs/libft/ft_substr.c:15>:
+                                ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                ft_strdup() <char *ft_strdup (const char *s) at libs/libft/ft_strdup.c:15>:
+                                    ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                    malloc()
+                                malloc()
+                            ft_strjoin() <char *ft_strjoin (char const *s1, char const *s2) at libs/libft/ft_strjoin.c:15>:
+                                ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                malloc()
+                            ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                            free()
+                    is_quote() <int is_quote (char c) at src/lexer/quotes.c:15>
+                    is_delim() <int is_delim (char c) at src/expander/exp_redir.c:25>
+                    expand_substring() <char *expand_substring (t_mini *data, char *string, int start, int end) at src/expander/env_expand.c:73>:
+                        ft_substr() <char *ft_substr (char const *s, unsigned int start, size_t len) at libs/libft/ft_substr.c:15>:
+                            ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                            ft_strdup() <char *ft_strdup (const char *s) at libs/libft/ft_strdup.c:15>:
+                                ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                malloc()
+                            malloc()
+                        ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                        ft_strcmp() <int ft_strcmp (char *s1, char *s2) at src/utils/str_utils.c:74>
+                        free()
+                        expand_var() <char *expand_var (t_mini *data, char *string, t_xy xy, char *expansion) at src/expander/env_expand.c:55>:
+                            ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                            mark_expansion() <char *mark_expansion (char *expansion) at src/expander/env_expand.c:44>:
+                                ft_strjoin() <char *ft_strjoin (char const *s1, char const *s2) at libs/libft/ft_strjoin.c:15>:
+                                    ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                    malloc()
+                                free()
+                            expand_and_reassemble() <char *expand_and_reassemble (t_mini *data, char *string, t_xy xy, char *expansion) at src/expander/env_expand.c:15>:
+                                ft_substr() <char *ft_substr (char const *s, unsigned int start, size_t len) at libs/libft/ft_substr.c:15>:
+                                    ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                    ft_strdup() <char *ft_strdup (const char *s) at libs/libft/ft_strdup.c:15>:
+                                        ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                        malloc()
+                                    malloc()
+                                ft_strjoin() <char *ft_strjoin (char const *s1, char const *s2) at libs/libft/ft_strjoin.c:15>:
+                                    ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                    malloc()
+                                ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                free()
+                            free()
+                        unmatched_var() <char *unmatched_var (t_mini *data, char *string, int start, int end) at src/expander/non_env_expand.c:80>:
+                            ft_strdup() <char *ft_strdup (const char *s) at libs/libft/ft_strdup.c:15>:
+                                ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                malloc()
+                            join_strings() <char *join_strings (t_mini *data, char *string, int start, int end) at src/expander/non_env_expand.c:55>:
+                                ft_strdup() <char *ft_strdup (const char *s) at libs/libft/ft_strdup.c:15>:
+                                    ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                    malloc()
+                                ft_substr() <char *ft_substr (char const *s, unsigned int start, size_t len) at libs/libft/ft_substr.c:15>:
+                                    ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                    ft_strdup() <char *ft_strdup (const char *s) at libs/libft/ft_strdup.c:15>:
+                                        ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                        malloc()
+                                    malloc()
+                                ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                ft_strjoin() <char *ft_strjoin (char const *s1, char const *s2) at libs/libft/ft_strjoin.c:15>:
+                                    ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                    malloc()
+                                free()
+                    ft_strdup() <char *ft_strdup (const char *s) at libs/libft/ft_strdup.c:15>:
+                        ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                        malloc()
+                free()
+            expand_redirections() <int expand_redirections (t_mini *data, t_parser *node) at src/expander/exp_redir.c:74>:
+                expand_string() <void expand_string (t_mini *data, char **string) at src/expander/expander.c:40>:
+                    ft_strdup() <char *ft_strdup (const char *s) at libs/libft/ft_strdup.c:15>:
+                        ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                        malloc()
+                    env_expand() <char *env_expand (t_mini *data, char **tmp, char **string) at src/expander/expander.c:15>:
+                        is_whitespace() <int is_whitespace (char c) at src/utils/str_utils.c:33>
+                        free()
+                        handle_question_mark() <char *handle_question_mark (t_mini *data, char *string, int start, int exit_code) at src/expander/non_env_expand.c:42>:
+                            ft_itoa() <char *ft_itoa (int n) at libs/libft/ft_itoa.c:56>:
+                                count_digits() <int count_digits (long nb) at libs/libft/ft_itoa.c:15>
+                                malloc()
+                                fill_str() <void fill_str (char *str, int digits, long nb) at libs/libft/ft_itoa.c:32>
+                            ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                            expand_and_replace_qm() <char *expand_and_replace_qm (t_mini *data, char *string, int start, char *exit_code) at src/expander/non_env_expand.c:15>:
+                                ft_substr() <char *ft_substr (char const *s, unsigned int start, size_t len) at libs/libft/ft_substr.c:15>:
+                                    ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                    ft_strdup() <char *ft_strdup (const char *s) at libs/libft/ft_strdup.c:15>:
+                                        ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                        malloc()
+                                    malloc()
+                                ft_strjoin() <char *ft_strjoin (char const *s1, char const *s2) at libs/libft/ft_strjoin.c:15>:
+                                    ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                    malloc()
+                                ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                free()
+                        is_quote() <int is_quote (char c) at src/lexer/quotes.c:15>
+                        is_delim() <int is_delim (char c) at src/expander/exp_redir.c:25>
+                        expand_substring() <char *expand_substring (t_mini *data, char *string, int start, int end) at src/expander/env_expand.c:73>:
+                            ft_substr() <char *ft_substr (char const *s, unsigned int start, size_t len) at libs/libft/ft_substr.c:15>:
+                                ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                ft_strdup() <char *ft_strdup (const char *s) at libs/libft/ft_strdup.c:15>:
+                                    ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                    malloc()
+                                malloc()
+                            ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                            ft_strcmp() <int ft_strcmp (char *s1, char *s2) at src/utils/str_utils.c:74>
+                            free()
+                            expand_var() <char *expand_var (t_mini *data, char *string, t_xy xy, char *expansion) at src/expander/env_expand.c:55>:
+                                ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                mark_expansion() <char *mark_expansion (char *expansion) at src/expander/env_expand.c:44>:
+                                    ft_strjoin() <char *ft_strjoin (char const *s1, char const *s2) at libs/libft/ft_strjoin.c:15>:
+                                        ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                        malloc()
+                                    free()
+                                expand_and_reassemble() <char *expand_and_reassemble (t_mini *data, char *string, t_xy xy, char *expansion) at src/expander/env_expand.c:15>:
+                                    ft_substr() <char *ft_substr (char const *s, unsigned int start, size_t len) at libs/libft/ft_substr.c:15>:
+                                        ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                        ft_strdup() <char *ft_strdup (const char *s) at libs/libft/ft_strdup.c:15>:
+                                            ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                            malloc()
+                                        malloc()
+                                    ft_strjoin() <char *ft_strjoin (char const *s1, char const *s2) at libs/libft/ft_strjoin.c:15>:
+                                        ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                        malloc()
+                                    ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                    free()
+                                free()
+                            unmatched_var() <char *unmatched_var (t_mini *data, char *string, int start, int end) at src/expander/non_env_expand.c:80>:
+                                ft_strdup() <char *ft_strdup (const char *s) at libs/libft/ft_strdup.c:15>:
+                                    ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                    malloc()
+                                join_strings() <char *join_strings (t_mini *data, char *string, int start, int end) at src/expander/non_env_expand.c:55>:
+                                    ft_strdup() <char *ft_strdup (const char *s) at libs/libft/ft_strdup.c:15>:
+                                        ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                        malloc()
+                                    ft_substr() <char *ft_substr (char const *s, unsigned int start, size_t len) at libs/libft/ft_substr.c:15>:
+                                        ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                        ft_strdup() <char *ft_strdup (const char *s) at libs/libft/ft_strdup.c:15>:
+                                            ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                            malloc()
+                                        malloc()
+                                    ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                    ft_strjoin() <char *ft_strjoin (char const *s1, char const *s2) at libs/libft/ft_strjoin.c:15>:
+                                        ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                        malloc()
+                                    free()
+                        ft_strdup() <char *ft_strdup (const char *s) at libs/libft/ft_strdup.c:15>:
+                            ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                            malloc()
+                    free()
+                space_in_redirection() <int space_in_redirection (char *redir) at src/expander/exp_redir.c:52>:
+                    is_whitespace() <int is_whitespace (char c) at src/utils/str_utils.c:33>
+                ft_putstr_fd() <void ft_putstr_fd (char *s, int fd) at libs/libft/ft_putstr_fd.c:15>:
+                    write() <ssize_t write (int __fd, const void *__buf, size_t __n) at /usr/include/unistd.h:378>
+                    ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+            strarr_cpy() <char **strarr_cpy (char **strarr) at src/utils/strarr_utils.c:88>:
+                ft_calloc() <void *ft_calloc (size_t num, size_t size) at libs/libft/ft_calloc.c:15>:
+                    malloc()
+                strarr_len() <size_t strarr_len (char **strarr) at src/utils/strarr_utils.c:58>
+                exit()
+                skip_empty_line() <int skip_empty_line (char **strarr, int *i) at src/utils/strarr_utils.c:78>
+                ft_strdup() <char *ft_strdup (const char *s) at libs/libft/ft_strdup.c:15>:
+                    ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                    malloc()
+                free_strarr() <void free_strarr (char **strarr) at src/utils/free_memory.c:15>:
+                    free()
+            free_strarr() <void free_strarr (char **strarr) at src/utils/free_memory.c:15>:
+                free()
+            clean_all() <int clean_all (t_mini *data) at src/expander/expander.c:96>:
+                clean_spaces() <void clean_spaces (t_mini *data) at src/expander/clean_cmds.c:66>:
+                    clean_cmd() <void clean_cmd (char *cmd) at src/expander/clean_cmds.c:84>
+                mark_quotes() <void mark_quotes (t_parser *cmd, int i) at src/expander/expander.c:67>
+                clean_quotes() <void clean_quotes (t_mini *data) at src/expander/clean_quotes.c:86>:
+                    replace_quotes() <void replace_quotes (char *str, int *marker_count, int i) at src/expander/clean_quotes.c:33>:
+                        init_quote_struct() <void init_quote_struct (t_quotes *q) at src/expander/clean_quotes.c:25>
+                        replace_and_reset() <void replace_and_reset (char *str, int *marker_count, int *first, int *second) at src/expander/clean_quotes.c:15>
+                    remove_marker() <char *remove_marker (t_mini *data, char *str, int marker_count, char marker) at src/expander/clean_quotes.c:61>:
+                        malloc()
+                        ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                        free_data_and_exit() <void free_data_and_exit (t_mini *data, int exit_code) at src/utils/free_memory.c:59>:
+                            free()
+                            free_strarr() <void free_strarr (char **strarr) at src/utils/free_memory.c:15>:
+                                free()
+                            free_lexer_list() <void free_lexer_list (t_lexer **lexer_list) at src/utils/free_memory.c:44>:
+                                free_node_lexer() <void free_node_lexer (t_lexer **node) at src/lexer/list_utils_lexer.c:15>:
+                                    free()
+                            free_parser_list() <void free_parser_list (t_parser **parser_list) at src/utils/free_memory.c:29>:
+                                free_node_parser() <void free_node_parser (t_parser **node) at src/parser/list_utils_parser.c:30>:
+                                    free_strarr() <void free_strarr (char **strarr) at src/utils/free_memory.c:15>:
+                                        free()
+                                    free()
+                            free_env_list() <void free_env_list (t_env *env) at src/builtins/utils/free_utils.c:15>:
+                                free()
+                            exit()
+                        free()
+                    clean_redirections() <void clean_redirections (t_mini *data, t_parser *tmp, int *marker_count) at src/expander/exp_redir.c:33>:
+                        replace_quotes() <void replace_quotes (char *str, int *marker_count, int i) at src/expander/clean_quotes.c:33>:
+                            init_quote_struct() <void init_quote_struct (t_quotes *q) at src/expander/clean_quotes.c:25>
+                            replace_and_reset() <void replace_and_reset (char *str, int *marker_count, int *first, int *second) at src/expander/clean_quotes.c:15>
+                        remove_marker() <char *remove_marker (t_mini *data, char *str, int marker_count, char marker) at src/expander/clean_quotes.c:61>:
+                            malloc()
+                            ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                            free_data_and_exit() <void free_data_and_exit (t_mini *data, int exit_code) at src/utils/free_memory.c:59>:
+                                free()
+                                free_strarr() <void free_strarr (char **strarr) at src/utils/free_memory.c:15>:
+                                    free()
+                                free_lexer_list() <void free_lexer_list (t_lexer **lexer_list) at src/utils/free_memory.c:44>:
+                                    free_node_lexer() <void free_node_lexer (t_lexer **node) at src/lexer/list_utils_lexer.c:15>:
+                                        free()
+                                free_parser_list() <void free_parser_list (t_parser **parser_list) at src/utils/free_memory.c:29>:
+                                    free_node_parser() <void free_node_parser (t_parser **node) at src/parser/list_utils_parser.c:30>:
+                                        free_strarr() <void free_strarr (char **strarr) at src/utils/free_memory.c:15>:
+                                            free()
+                                        free()
+                                free_env_list() <void free_env_list (t_env *env) at src/builtins/utils/free_utils.c:15>:
+                                    free()
+                                exit()
+                            free()
+                clean_markers() <void clean_markers (t_mini *data) at src/expander/clean_cmds.c:46>:
+                    remove_marker() <char *remove_marker (t_mini *data, char *str, int marker_count, char marker) at src/expander/clean_quotes.c:61>:
+                        malloc()
+                        ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                        free_data_and_exit() <void free_data_and_exit (t_mini *data, int exit_code) at src/utils/free_memory.c:59>:
+                            free()
+                            free_strarr() <void free_strarr (char **strarr) at src/utils/free_memory.c:15>:
+                                free()
+                            free_lexer_list() <void free_lexer_list (t_lexer **lexer_list) at src/utils/free_memory.c:44>:
+                                free_node_lexer() <void free_node_lexer (t_lexer **node) at src/lexer/list_utils_lexer.c:15>:
+                                    free()
+                            free_parser_list() <void free_parser_list (t_parser **parser_list) at src/utils/free_memory.c:29>:
+                                free_node_parser() <void free_node_parser (t_parser **node) at src/parser/list_utils_parser.c:30>:
+                                    free_strarr() <void free_strarr (char **strarr) at src/utils/free_memory.c:15>:
+                                        free()
+                                    free()
+                            free_env_list() <void free_env_list (t_env *env) at src/builtins/utils/free_utils.c:15>:
+                                free()
+                            exit()
+                        free()
+                    count_marker() <int count_marker (char *str, char marker) at src/expander/clean_cmds.c:15>
+                    clean_markers_redir() <void clean_markers_redir (t_mini *data, t_parser *node) at src/expander/clean_cmds.c:31>:
+                        remove_marker() <char *remove_marker (t_mini *data, char *str, int marker_count, char marker) at src/expander/clean_quotes.c:61>:
+                            malloc()
+                            ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                            free_data_and_exit() <void free_data_and_exit (t_mini *data, int exit_code) at src/utils/free_memory.c:59>:
+                                free()
+                                free_strarr() <void free_strarr (char **strarr) at src/utils/free_memory.c:15>:
+                                    free()
+                                free_lexer_list() <void free_lexer_list (t_lexer **lexer_list) at src/utils/free_memory.c:44>:
+                                    free_node_lexer() <void free_node_lexer (t_lexer **node) at src/lexer/list_utils_lexer.c:15>:
+                                        free()
+                                free_parser_list() <void free_parser_list (t_parser **parser_list) at src/utils/free_memory.c:29>:
+                                    free_node_parser() <void free_node_parser (t_parser **node) at src/parser/list_utils_parser.c:30>:
+                                        free_strarr() <void free_strarr (char **strarr) at src/utils/free_memory.c:15>:
+                                            free()
+                                        free()
+                                free_env_list() <void free_env_list (t_env *env) at src/builtins/utils/free_utils.c:15>:
+                                    free()
+                                exit()
+                            free()
+                        count_marker() <int count_marker (char *str, char marker) at src/expander/clean_cmds.c:15>
+        executor() <void executor (t_mini *data) at src/executor/executor.c:99>:
+            count_nodes() <int count_nodes (t_parser *parser_list) at src/parser/list_utils_parser.c:15>
+            malloc()
+            free_data_and_exit() <void free_data_and_exit (t_mini *data, int exit_code) at src/utils/free_memory.c:59>:
+                free()
+                free_strarr() <void free_strarr (char **strarr) at src/utils/free_memory.c:15>:
+                    free()
+                free_lexer_list() <void free_lexer_list (t_lexer **lexer_list) at src/utils/free_memory.c:44>:
+                    free_node_lexer() <void free_node_lexer (t_lexer **node) at src/lexer/list_utils_lexer.c:15>:
+                        free()
+                free_parser_list() <void free_parser_list (t_parser **parser_list) at src/utils/free_memory.c:29>:
+                    free_node_parser() <void free_node_parser (t_parser **node) at src/parser/list_utils_parser.c:30>:
+                        free_strarr() <void free_strarr (char **strarr) at src/utils/free_memory.c:15>:
+                            free()
+                        free()
+                free_env_list() <void free_env_list (t_env *env) at src/builtins/utils/free_utils.c:15>:
+                    free()
+                exit()
+            multiple_commands() <void multiple_commands (t_mini *data) at src/executor/multiple_commands.c:63>:
+                signal_heredoc() <int signal_heredoc (t_mini *data) at src/signals.c:15>:
+                    check_heredoc() <void check_heredoc (t_mini *data, t_parser *cmd) at src/executor/heredoc.c:88>:
+                        handle_heredoc() <void handle_heredoc (t_mini *data, t_parser **cmd, t_lexer **heredoc) at src/executor/heredoc.c:71>:
+                            free()
+                            new_heredoc_name() <char *new_heredoc_name (void) at src/executor/heredoc.c:58>:
+                                ft_itoa() <char *ft_itoa (int n) at libs/libft/ft_itoa.c:56>:
+                                    count_digits() <int count_digits (long nb) at libs/libft/ft_itoa.c:15>
+                                    malloc()
+                                    fill_str() <void fill_str (char *str, int digits, long nb) at libs/libft/ft_itoa.c:32>
+                                ft_strjoin() <char *ft_strjoin (char const *s1, char const *s2) at libs/libft/ft_strjoin.c:15>:
+                                    ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                    malloc()
+                                free()
+                            ft_strdup() <char *ft_strdup (const char *s) at libs/libft/ft_strdup.c:15>:
+                                ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                malloc()
+                            replace_quotes() <void replace_quotes (char *str, int *marker_count, int i) at src/expander/clean_quotes.c:33>:
+                                init_quote_struct() <void init_quote_struct (t_quotes *q) at src/expander/clean_quotes.c:25>
+                                replace_and_reset() <void replace_and_reset (char *str, int *marker_count, int *first, int *second) at src/expander/clean_quotes.c:15>
+                            remove_marker() <char *remove_marker (t_mini *data, char *str, int marker_count, char marker) at src/expander/clean_quotes.c:61>:
+                                malloc()
+                                ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                free_data_and_exit() <void free_data_and_exit (t_mini *data, int exit_code) at src/utils/free_memory.c:59>:
+                                    free()
+                                    free_strarr() <void free_strarr (char **strarr) at src/utils/free_memory.c:15>:
+                                        free()
+                                    free_lexer_list() <void free_lexer_list (t_lexer **lexer_list) at src/utils/free_memory.c:44>:
+                                        free_node_lexer() <void free_node_lexer (t_lexer **node) at src/lexer/list_utils_lexer.c:15>:
+                                            free()
+                                    free_parser_list() <void free_parser_list (t_parser **parser_list) at src/utils/free_memory.c:29>:
+                                        free_node_parser() <void free_node_parser (t_parser **node) at src/parser/list_utils_parser.c:30>:
+                                            free_strarr() <void free_strarr (char **strarr) at src/utils/free_memory.c:15>:
+                                                free()
+                                            free()
+                                    free_env_list() <void free_env_list (t_env *env) at src/builtins/utils/free_utils.c:15>:
+                                        free()
+                                    exit()
+                                free()
+                            make_heredoc() <int make_heredoc (t_mini *data, t_parser **cmd, char *heredoc_token) at src/executor/heredoc.c:36>:
+                                open() <int open (const char *__file, int __oflag, ...) at /usr/include/fcntl.h:181>
+                                readline()
+                                break_case() <int break_case (t_mini *data, char *line, t_parser **cmd) at src/executor/heredoc.c:15>:
+                                    free()
+                                    print_err_hd() <void print_err_hd (char *delim) at src/expander/exp_redir.c:15>:
+                                        ft_putstr_fd() <void ft_putstr_fd (char *s, int fd) at libs/libft/ft_putstr_fd.c:15>:
+                                            write() <ssize_t write (int __fd, const void *__buf, size_t __n) at /usr/include/unistd.h:378>
+                                            ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                    ft_strcmp() <int ft_strcmp (char *s1, char *s2) at src/utils/str_utils.c:74>
+                                heredoc_is_quoted() <int heredoc_is_quoted (char *heredoc_token) at src/executor/path_finder.c:14>
+                                expand_string() <void expand_string (t_mini *data, char **string) at src/expander/expander.c:40>:
+                                    ft_strdup() <char *ft_strdup (const char *s) at libs/libft/ft_strdup.c:15>:
+                                        ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                        malloc()
+                                    env_expand() <char *env_expand (t_mini *data, char **tmp, char **string) at src/expander/expander.c:15>:
+                                        is_whitespace() <int is_whitespace (char c) at src/utils/str_utils.c:33>
+                                        free()
+                                        handle_question_mark() <char *handle_question_mark (t_mini *data, char *string, int start, int exit_code) at src/expander/non_env_expand.c:42>:
+                                            ft_itoa() <char *ft_itoa (int n) at libs/libft/ft_itoa.c:56>:
+                                                count_digits() <int count_digits (long nb) at libs/libft/ft_itoa.c:15>
+                                                malloc()
+                                                fill_str() <void fill_str (char *str, int digits, long nb) at libs/libft/ft_itoa.c:32>
+                                            ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                            expand_and_replace_qm() <char *expand_and_replace_qm (t_mini *data, char *string, int start, char *exit_code) at src/expander/non_env_expand.c:15>:
+                                                ft_substr() <char *ft_substr (char const *s, unsigned int start, size_t len) at libs/libft/ft_substr.c:15>:
+                                                    ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                                    ft_strdup() <char *ft_strdup (const char *s) at libs/libft/ft_strdup.c:15>:
+                                                        ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                                        malloc()
+                                                    malloc()
+                                                ft_strjoin() <char *ft_strjoin (char const *s1, char const *s2) at libs/libft/ft_strjoin.c:15>:
+                                                    ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                                    malloc()
+                                                ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                                free()
+                                        is_quote() <int is_quote (char c) at src/lexer/quotes.c:15>
+                                        is_delim() <int is_delim (char c) at src/expander/exp_redir.c:25>
+                                        expand_substring() <char *expand_substring (t_mini *data, char *string, int start, int end) at src/expander/env_expand.c:73>:
+                                            ft_substr() <char *ft_substr (char const *s, unsigned int start, size_t len) at libs/libft/ft_substr.c:15>:
+                                                ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                                ft_strdup() <char *ft_strdup (const char *s) at libs/libft/ft_strdup.c:15>:
+                                                    ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                                    malloc()
+                                                malloc()
+                                            ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                            ft_strcmp() <int ft_strcmp (char *s1, char *s2) at src/utils/str_utils.c:74>
+                                            free()
+                                            expand_var() <char *expand_var (t_mini *data, char *string, t_xy xy, char *expansion) at src/expander/env_expand.c:55>:
+                                                ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                                mark_expansion() <char *mark_expansion (char *expansion) at src/expander/env_expand.c:44>:
+                                                    ft_strjoin() <char *ft_strjoin (char const *s1, char const *s2) at libs/libft/ft_strjoin.c:15>:
+                                                        ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                                        malloc()
+                                                    free()
+                                                expand_and_reassemble() <char *expand_and_reassemble (t_mini *data, char *string, t_xy xy, char *expansion) at src/expander/env_expand.c:15>:
+                                                    ft_substr() <char *ft_substr (char const *s, unsigned int start, size_t len) at libs/libft/ft_substr.c:15>:
+                                                        ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                                        ft_strdup() <char *ft_strdup (const char *s) at libs/libft/ft_strdup.c:15>:
+                                                            ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                                            malloc()
+                                                        malloc()
+                                                    ft_strjoin() <char *ft_strjoin (char const *s1, char const *s2) at libs/libft/ft_strjoin.c:15>:
+                                                        ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                                        malloc()
+                                                    ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                                    free()
+                                                free()
+                                            unmatched_var() <char *unmatched_var (t_mini *data, char *string, int start, int end) at src/expander/non_env_expand.c:80>:
+                                                ft_strdup() <char *ft_strdup (const char *s) at libs/libft/ft_strdup.c:15>:
+                                                    ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                                    malloc()
+                                                join_strings() <char *join_strings (t_mini *data, char *string, int start, int end) at src/expander/non_env_expand.c:55>:
+                                                    ft_strdup() <char *ft_strdup (const char *s) at libs/libft/ft_strdup.c:15>:
+                                                        ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                                        malloc()
+                                                    ft_substr() <char *ft_substr (char const *s, unsigned int start, size_t len) at libs/libft/ft_substr.c:15>:
+                                                        ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                                        ft_strdup() <char *ft_strdup (const char *s) at libs/libft/ft_strdup.c:15>:
+                                                            ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                                            malloc()
+                                                        malloc()
+                                                    ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                                    ft_strjoin() <char *ft_strjoin (char const *s1, char const *s2) at libs/libft/ft_strjoin.c:15>:
+                                                        ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                                        malloc()
+                                                    free()
+                                        ft_strdup() <char *ft_strdup (const char *s) at libs/libft/ft_strdup.c:15>:
+                                            ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                            malloc()
+                                    free()
+                                write() <ssize_t write (int __fd, const void *__buf, size_t __n) at /usr/include/unistd.h:378>
+                                ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                free()
+                                close()
+                pipe()
+                make_process() <void make_process (t_mini **data, t_parser *cmd, int pipes_ends[2], int idx) at src/executor/multiple_commands.c:31>:
+                    fork()
+                    free_data_and_exit() <void free_data_and_exit (t_mini *data, int exit_code) at src/utils/free_memory.c:59>:
+                        free()
+                        free_strarr() <void free_strarr (char **strarr) at src/utils/free_memory.c:15>:
+                            free()
+                        free_lexer_list() <void free_lexer_list (t_lexer **lexer_list) at src/utils/free_memory.c:44>:
+                            free_node_lexer() <void free_node_lexer (t_lexer **node) at src/lexer/list_utils_lexer.c:15>:
+                                free()
+                        free_parser_list() <void free_parser_list (t_parser **parser_list) at src/utils/free_memory.c:29>:
+                            free_node_parser() <void free_node_parser (t_parser **node) at src/parser/list_utils_parser.c:30>:
+                                free_strarr() <void free_strarr (char **strarr) at src/utils/free_memory.c:15>:
+                                    free()
+                                free()
+                        free_env_list() <void free_env_list (t_env *env) at src/builtins/utils/free_utils.c:15>:
+                            free()
+                        exit()
+                    redirect_in_out() <void redirect_in_out (t_mini **data, t_parser *cmd, int pipes_ends[2]) at src/executor/multiple_commands.c:15>:
+                        dup2() <int dup2 (int __fd, int __fd2) at /usr/include/unistd.h:555>
+                        free_data_and_exit() <void free_data_and_exit (t_mini *data, int exit_code) at src/utils/free_memory.c:59>:
+                            free()
+                            free_strarr() <void free_strarr (char **strarr) at src/utils/free_memory.c:15>:
+                                free()
+                            free_lexer_list() <void free_lexer_list (t_lexer **lexer_list) at src/utils/free_memory.c:44>:
+                                free_node_lexer() <void free_node_lexer (t_lexer **node) at src/lexer/list_utils_lexer.c:15>:
+                                    free()
+                            free_parser_list() <void free_parser_list (t_parser **parser_list) at src/utils/free_memory.c:29>:
+                                free_node_parser() <void free_node_parser (t_parser **node) at src/parser/list_utils_parser.c:30>:
+                                    free_strarr() <void free_strarr (char **strarr) at src/utils/free_memory.c:15>:
+                                        free()
+                                    free()
+                            free_env_list() <void free_env_list (t_env *env) at src/builtins/utils/free_utils.c:15>:
+                                free()
+                            exit()
+                        close()
+                    execute_command() <void execute_command (t_mini *data, t_parser *cmd) at src/executor/executor.c:47>:
+                        new_commands() <char **new_commands (t_parser *cmd) at src/executor/executor.c:35>:
+                            make_commands_cpy() <char **make_commands_cpy (char **commands) at src/executor/utils.c:98>:
+                                count_words() <int count_words (char **commands) at src/executor/utils.c:15>:
+                                malloc()
+                                free_data_and_exit() <void free_data_and_exit (t_mini *data, int exit_code) at src/utils/free_memory.c:59>:
+                                    free()
+                                    free_strarr() <void free_strarr (char **strarr) at src/utils/free_memory.c:15>:
+                                        free()
+                                    free_lexer_list() <void free_lexer_list (t_lexer **lexer_list) at src/utils/free_memory.c:44>:
+                                        free_node_lexer() <void free_node_lexer (t_lexer **node) at src/lexer/list_utils_lexer.c:15>:
+                                            free()
+                                    free_parser_list() <void free_parser_list (t_parser **parser_list) at src/utils/free_memory.c:29>:
+                                        free_node_parser() <void free_node_parser (t_parser **node) at src/parser/list_utils_parser.c:30>:
+                                            free_strarr() <void free_strarr (char **strarr) at src/utils/free_memory.c:15>:
+                                                free()
+                                            free()
+                                    free_env_list() <void free_env_list (t_env *env) at src/builtins/utils/free_utils.c:15>:
+                                        free()
+                                    exit()
+                                parse_command() <int parse_command (char *command, char **result, int index) at src/executor/utils.c:77>:
+                                    is_whitespace() <int is_whitespace (char c) at src/utils/str_utils.c:33>
+                                    copy_word() <char *copy_word (const char *command, int start, int end) at src/executor/utils.c:63>:
+                                        malloc()
+                                        free_data_and_exit() <void free_data_and_exit (t_mini *data, int exit_code) at src/utils/free_memory.c:59>:
+                                            free()
+                                            free_strarr() <void free_strarr (char **strarr) at src/utils/free_memory.c:15>:
+                                                free()
+                                            free_lexer_list() <void free_lexer_list (t_lexer **lexer_list) at src/utils/free_memory.c:44>:
+                                                free_node_lexer() <void free_node_lexer (t_lexer **node) at src/lexer/list_utils_lexer.c:15>:
+                                                    free()
+                                            free_parser_list() <void free_parser_list (t_parser **parser_list) at src/utils/free_memory.c:29>:
+                                                free_node_parser() <void free_node_parser (t_parser **node) at src/parser/list_utils_parser.c:30>:
+                                                    free_strarr() <void free_strarr (char **strarr) at src/utils/free_memory.c:15>:
+                                                        free()
+                                                    free()
+                                            free_env_list() <void free_env_list (t_env *env) at src/builtins/utils/free_utils.c:15>:
+                                                free()
+                                            exit()
+                                        ft_strncpy() <char *ft_strncpy (char *dest, char *src, unsigned int n) at src/utils/str_utils.c:15>:
+                                replace_marker() <void replace_marker (char **commands) at src/executor/utils.c:44>
+                            free_strarr() <void free_strarr (char **strarr) at src/utils/free_memory.c:15>:
+                                free()
+                        exit()
+                        is_a_directory() <int is_a_directory (char *cmd) at src/executor/executor.c:16>:
+                            opendir()
+                            closedir()
+                            ft_putstr_fd() <void ft_putstr_fd (char *s, int fd) at libs/libft/ft_putstr_fd.c:15>:
+                                write() <ssize_t write (int __fd, const void *__buf, size_t __n) at /usr/include/unistd.h:378>
+                                ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                        redirections() <int redirections (t_mini *data, t_parser *cmd) at src/executor/redirections.c:83>:
+                            dispatch_redirections() <int dispatch_redirections (t_mini *data, t_lexer *redirection, t_parser *cmd) at src/executor/redirections.c:67>:
+                                open() <int open (const char *__file, int __oflag, ...) at /usr/include/fcntl.h:181>
+                                check_fd() <int check_fd (int fd, int type, char *str) at src/executor/redirections.c:42>:
+                                    ft_putstr_fd() <void ft_putstr_fd (char *s, int fd) at libs/libft/ft_putstr_fd.c:15>:
+                                        write() <ssize_t write (int __fd, const void *__buf, size_t __n) at /usr/include/unistd.h:378>
+                                        ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                    dup2() <int dup2 (int __fd, int __fd2) at /usr/include/unistd.h:555>
+                                    close()
+                        call_builtin_function() <int call_builtin_function (t_mini *data, t_parser *cmd) at src/builtins/utils/call_builtin_function.c:42>:
+                            ft_strcmp() <int ft_strcmp (char *s1, char *s2) at src/utils/str_utils.c:74>
+                            ft_cd() <int ft_cd (t_mini *data, t_parser *node) at src/builtins/functions/ft_cd.c:62>:
+                                doublepointerlenght() <int doublepointerlenght (char **line) at src/builtins/functions/ft_export.c:43>
+                                cd_error() <int cd_error (char *msg) at src/builtins/functions/ft_cd.c:56>:
+                                    ft_putstr_fd() <void ft_putstr_fd (char *s, int fd) at libs/libft/ft_putstr_fd.c:15>:
+                                        write() <ssize_t write (int __fd, const void *__buf, size_t __n) at /usr/include/unistd.h:378>
+                                        ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                pathishome() <char *pathishome (char **env) at src/builtins/functions/ft_cd.c:15>:
+                                    ft_strncmp() <int ft_strncmp (const char *str1, const char *str2, size_t n) at libs/libft/ft_strncmp.c:15>:
+                                ft_error() <int ft_error (char *path) at src/builtins/functions/ft_cd.c:34>:
+                                    access() <int access (const char *__name, int __type) at /usr/include/unistd.h:287>
+                                    ft_putstr_fd() <void ft_putstr_fd (char *s, int fd) at libs/libft/ft_putstr_fd.c:15>:
+                                        write() <ssize_t write (int __fd, const void *__buf, size_t __n) at /usr/include/unistd.h:378>
+                                        ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                    write() <ssize_t write (int __fd, const void *__buf, size_t __n) at /usr/include/unistd.h:378>
+                                chdir()
+                            ft_echo() <int ft_echo (t_mini *data, t_parser *cmd) at src/builtins/functions/ft_echo.c:39>:
+                                printf()
+                                is_there_flag() <int is_there_flag (char **args) at src/builtins/functions/ft_echo.c:15>:
+                                    ft_strncmp() <int ft_strncmp (const char *str1, const char *str2, size_t n) at libs/libft/ft_strncmp.c:15>:
+                            ft_env() <int ft_env (t_mini *data) at src/builtins/functions/ft_env.c:15>:
+                                write() <ssize_t write (int __fd, const void *__buf, size_t __n) at /usr/include/unistd.h:378>
+                                ft_strchr() <char *ft_strchr (const char *string, int c) at libs/libft/ft_strchr.c:15>:
+                                printf()
+                            ft_exit() <int ft_exit (t_mini *data, t_parser *node) at src/builtins/functions/ft_exit.c:82>:
+                                ft_comands_len() <int ft_comands_len (char **commands) at src/builtins/functions/ft_exit.c:17>
+                                write() <ssize_t write (int __fd, const void *__buf, size_t __n) at /usr/include/unistd.h:378>
+                                check_number() <int check_number (char *number) at src/builtins/functions/ft_exit.c:27>:
+                                    ft_isdigit() <int ft_isdigit (int character) at libs/libft/ft_isdigit.c:14>
+                                printf()
+                                free_data_and_exit() <void free_data_and_exit (t_mini *data, int exit_code) at src/utils/free_memory.c:59>:
+                                    free()
+                                    free_strarr() <void free_strarr (char **strarr) at src/utils/free_memory.c:15>:
+                                        free()
+                                    free_lexer_list() <void free_lexer_list (t_lexer **lexer_list) at src/utils/free_memory.c:44>:
+                                        free_node_lexer() <void free_node_lexer (t_lexer **node) at src/lexer/list_utils_lexer.c:15>:
+                                            free()
+                                    free_parser_list() <void free_parser_list (t_parser **parser_list) at src/utils/free_memory.c:29>:
+                                        free_node_parser() <void free_node_parser (t_parser **node) at src/parser/list_utils_parser.c:30>:
+                                            free_strarr() <void free_strarr (char **strarr) at src/utils/free_memory.c:15>:
+                                                free()
+                                            free()
+                                    free_env_list() <void free_env_list (t_env *env) at src/builtins/utils/free_utils.c:15>:
+                                        free()
+                                    exit()
+                                safe_atoi() <long long safe_atoi (char *str) at src/builtins/functions/ft_exit.c:72>:
+                                    ft_strtoll() <long long ft_strtoll (const char *str) at src/builtins/functions/ft_exit.c:43>:
+                                        is_whitespace() <int is_whitespace (char c) at src/utils/str_utils.c:33>
+                                        ft_isdigit() <int ft_isdigit (int character) at libs/libft/ft_isdigit.c:14>
+                                length_2() <long long length_2 (long long exit_code, t_mini *data) at src/builtins/utils/free_utils.c:42>:
+                                    printf()
+                                    free_data_and_exit() <void free_data_and_exit (t_mini *data, int exit_code) at src/utils/free_memory.c:59>:
+                                        free()
+                                        free_strarr() <void free_strarr (char **strarr) at src/utils/free_memory.c:15>:
+                                            free()
+                                        free_lexer_list() <void free_lexer_list (t_lexer **lexer_list) at src/utils/free_memory.c:44>:
+                                            free_node_lexer() <void free_node_lexer (t_lexer **node) at src/lexer/list_utils_lexer.c:15>:
+                                                free()
+                                        free_parser_list() <void free_parser_list (t_parser **parser_list) at src/utils/free_memory.c:29>:
+                                            free_node_parser() <void free_node_parser (t_parser **node) at src/parser/list_utils_parser.c:30>:
+                                                free_strarr() <void free_strarr (char **strarr) at src/utils/free_memory.c:15>:
+                                                    free()
+                                                free()
+                                        free_env_list() <void free_env_list (t_env *env) at src/builtins/utils/free_utils.c:15>:
+                                            free()
+                                        exit()
+                            ft_export() <int ft_export (t_mini *data, t_parser *node) at src/builtins/functions/ft_export.c:63>:
+                                doublepointerlenght() <int doublepointerlenght (char **line) at src/builtins/functions/ft_export.c:43>
+                                export_list() <t_env *export_list (t_env *original) at src/builtins/utils/export_utils.c:15>:
+                                    fill_env_list() <void fill_env_list (t_env **env_cpy, const char *variable, const char *content) at src/builtins/utils/env_list.c:110>:
+                                        malloc()
+                                        write() <ssize_t write (int __fd, const void *__buf, size_t __n) at /usr/include/unistd.h:378>
+                                        exit()
+                                        ft_strdup() <char *ft_strdup (const char *s) at libs/libft/ft_strdup.c:15>:
+                                            ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                            malloc()
+                                        mark_cont() <char *mark_cont (char *content) at src/builtins/utils/env_list.c:94>:
+                                            ft_strdup() <char *ft_strdup (const char *s) at libs/libft/ft_strdup.c:15>:
+                                                ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                                malloc()
+                                        add_last_node() <void add_last_node (t_env **env_cpy, t_env *new_node) at src/builtins/utils/list_utils.c:15>:
+                                            ft_last_node() <t_env *ft_last_node (t_env *env_cpy) at src/builtins/utils/list_utils.c:29>
+                                    bubble_sort_env_list() <void bubble_sort_env_list (t_env **head) at src/builtins/utils/export_utils.c:44>:
+                                        strcmp() <int strcmp (const char *__s1, const char *__s2) at /usr/include/string.h:156>
+                                        swap_nodes() <void swap_nodes (t_env *a, t_env *b) at src/builtins/utils/export_utils.c:31>
+                                ft_strcmp() <int ft_strcmp (char *s1, char *s2) at src/utils/str_utils.c:74>
+                                print_export_list() <void print_export_list (t_env *export_cpy) at src/builtins/utils/export_utils3.c:79>:
+                                    print_export_variable() <void print_export_variable (t_env *temp) at src/builtins/functions/ft_export.c:53>:
+                                        ft_strchr() <char *ft_strchr (const char *string, int c) at libs/libft/ft_strchr.c:15>:
+                                        printf()
+                                process_export_variables() <int process_export_variables (t_mini *data, char **arg, int len, t_content *content) at src/builtins/utils/export_utils2.c:17>:
+                                    ft_sintax() <int ft_sintax (char *arg) at src/builtins/utils/export_utils3.c:68>:
+                                        check_numeric_syntax() <int check_numeric_syntax (char *arg) at src/builtins/utils/export_utils3.c:15>:
+                                            ft_isdigit() <int ft_isdigit (int character) at libs/libft/ft_isdigit.c:14>
+                                            invalid_arg() <int invalid_arg (char *arg) at src/builtins/utils/list_utils.c:52>:
+                                                ft_putstr_fd() <void ft_putstr_fd (char *s, int fd) at libs/libft/ft_putstr_fd.c:15>:
+                                                    write() <ssize_t write (int __fd, const void *__buf, size_t __n) at /usr/include/unistd.h:378>
+                                                    ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                        check_dash_and_equals_syntax() <int check_dash_and_equals_syntax (char *arg) at src/builtins/utils/export_utils3.c:31>:
+                                            ft_strchr() <char *ft_strchr (const char *string, int c) at libs/libft/ft_strchr.c:15>:
+                                            invalid_arg() <int invalid_arg (char *arg) at src/builtins/utils/list_utils.c:52>:
+                                                ft_putstr_fd() <void ft_putstr_fd (char *s, int fd) at libs/libft/ft_putstr_fd.c:15>:
+                                                    write() <ssize_t write (int __fd, const void *__buf, size_t __n) at /usr/include/unistd.h:378>
+                                                    ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                            ft_export_error() <int ft_export_error (void) at src/builtins/utils/list_utils.c:44>:
+                                                ft_putstr_fd() <void ft_putstr_fd (char *s, int fd) at libs/libft/ft_putstr_fd.c:15>:
+                                                    write() <ssize_t write (int __fd, const void *__buf, size_t __n) at /usr/include/unistd.h:378>
+                                                    ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                        check_identifier_syntax() <int check_identifier_syntax (char *arg) at src/builtins/utils/export_utils3.c:52>:
+                                            ft_isalpha() <int ft_isalpha (int character) at libs/libft/ft_isalpha.c:13>
+                                            invalid_arg() <int invalid_arg (char *arg) at src/builtins/utils/list_utils.c:52>:
+                                                ft_putstr_fd() <void ft_putstr_fd (char *s, int fd) at libs/libft/ft_putstr_fd.c:15>:
+                                                    write() <ssize_t write (int __fd, const void *__buf, size_t __n) at /usr/include/unistd.h:378>
+                                                    ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                            ft_isalnum() <int ft_isalnum (int character) at libs/libft/ft_isalnum.c:15>
+                                    process_single_export_variable() <void process_single_export_variable (t_mini *data, char **arg, int i, t_content *content) at src/builtins/utils/export_utils2.c:35>:
+                                        separate_varcont() <int separate_varcont (char *line, t_content *content) at src/builtins/utils/env_list.c:71>:
+                                            ft_strchr() <char *ft_strchr (const char *string, int c) at libs/libft/ft_strchr.c:15>:
+                                            ft_strndup() <char *ft_strndup (const char *s, size_t n) at src/builtins/functions/ft_unset.c:41>:
+                                                ft_strnlen() <size_t ft_strnlen (const char *string, size_t max) at src/builtins/functions/ft_unset.c:31>
+                                                malloc()
+                                                ft_memcpy() <void *ft_memcpy (void *dest, const void *src, size_t n) at libs/libft/ft_memcpy.c:15>:
+                                            ft_strdup() <char *ft_strdup (const char *s) at libs/libft/ft_strdup.c:15>:
+                                                ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                                malloc()
+                                            free()
+                                        find_env_variable() <t_env *find_env_variable (t_env *env, const char *variable) at src/builtins/functions/ft_export.c:15>:
+                                            ft_strtrim() <char *ft_strtrim (char const *s1, char const *set) at libs/libft/ft_strtrim.c:84>:
+                                                ft_strdup() <char *ft_strdup (const char *s) at libs/libft/ft_strdup.c:15>:
+                                                    ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                                    malloc()
+                                                string_start() <int string_start (char const *s1, char const *set) at libs/libft/ft_strtrim.c:16>
+                                                string_end() <int string_end (char const *s1, char const *set) at libs/libft/ft_strtrim.c:43>:
+                                                    ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                                malloc()
+                                                fill_string() <void fill_string (char const *s1, char *new_str, int start, int end) at libs/libft/ft_strtrim.c:70>
+                                            ft_strjoin() <char *ft_strjoin (char const *s1, char const *s2) at libs/libft/ft_strjoin.c:15>:
+                                                ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                                malloc()
+                                            ft_strcmp() <int ft_strcmp (char *s1, char *s2) at src/utils/str_utils.c:74>
+                                            free()
+                                        add_new_variable() <void add_new_variable (t_mini *data, t_content *content) at src/builtins/utils/export_utils2.c:53>:
+                                            fill_env_list() <void fill_env_list (t_env **env_cpy, const char *variable, const char *content) at src/builtins/utils/env_list.c:110>:
+                                                malloc()
+                                                write() <ssize_t write (int __fd, const void *__buf, size_t __n) at /usr/include/unistd.h:378>
+                                                exit()
+                                                ft_strdup() <char *ft_strdup (const char *s) at libs/libft/ft_strdup.c:15>:
+                                                    ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                                    malloc()
+                                                mark_cont() <char *mark_cont (char *content) at src/builtins/utils/env_list.c:94>:
+                                                    ft_strdup() <char *ft_strdup (const char *s) at libs/libft/ft_strdup.c:15>:
+                                                        ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                                        malloc()
+                                                add_last_node() <void add_last_node (t_env **env_cpy, t_env *new_node) at src/builtins/utils/list_utils.c:15>:
+                                                    ft_last_node() <t_env *ft_last_node (t_env *env_cpy) at src/builtins/utils/list_utils.c:29>
+                                        free_t_content() <void free_t_content (t_content *content) at src/builtins/utils/free_utils.c:31>:
+                                            free()
+                                        update_existing_variable() <void update_existing_variable (t_env *existing, t_content *content) at src/builtins/utils/export_utils2.c:61>:
+                                            ft_strdup() <char *ft_strdup (const char *s) at libs/libft/ft_strdup.c:15>:
+                                                ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                                malloc()
+                                            ft_strchr() <char *ft_strchr (const char *string, int c) at libs/libft/ft_strchr.c:15>:
+                                            free()
+                                            ft_strjoin() <char *ft_strjoin (char const *s1, char const *s2) at libs/libft/ft_strjoin.c:15>:
+                                                ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                                malloc()
+                                            mark_cont() <char *mark_cont (char *content) at src/builtins/utils/env_list.c:94>:
+                                                ft_strdup() <char *ft_strdup (const char *s) at libs/libft/ft_strdup.c:15>:
+                                                    ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                                    malloc()
+                                free_env_list() <void free_env_list (t_env *env) at src/builtins/utils/free_utils.c:15>:
+                                    free()
+                            ft_pwd() <int ft_pwd (void) at src/builtins/functions/ft_pwd.c:15>:
+                                getcwd() <char *getcwd (char *__buf, size_t __size) at /usr/include/unistd.h:531>
+                                perror()
+                                printf()
+                                free()
+                            ft_unset() <int ft_unset (t_mini *data, t_parser *node) at src/builtins/functions/ft_unset.c:69>:
+                                ft_strncmp() <int ft_strncmp (const char *str1, const char *str2, size_t n) at libs/libft/ft_strncmp.c:15>:
+                                ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                ft_free_from_env() <int ft_free_from_env (t_env **head, t_env *env) at src/builtins/functions/ft_unset.c:15>:
+                                    free()
+                        env_list_to_strarr() <char **env_list_to_strarr (t_mini *data) at src/utils/strarr_utils.c:30>:
+                            malloc()
+                            count_env_nodes() <int count_env_nodes (t_env *env_list) at src/utils/strarr_utils.c:15>
+                            free_data_and_exit() <void free_data_and_exit (t_mini *data, int exit_code) at src/utils/free_memory.c:59>:
+                                free()
+                                free_strarr() <void free_strarr (char **strarr) at src/utils/free_memory.c:15>:
+                                    free()
+                                free_lexer_list() <void free_lexer_list (t_lexer **lexer_list) at src/utils/free_memory.c:44>:
+                                    free_node_lexer() <void free_node_lexer (t_lexer **node) at src/lexer/list_utils_lexer.c:15>:
+                                        free()
+                                free_parser_list() <void free_parser_list (t_parser **parser_list) at src/utils/free_memory.c:29>:
+                                    free_node_parser() <void free_node_parser (t_parser **node) at src/parser/list_utils_parser.c:30>:
+                                        free_strarr() <void free_strarr (char **strarr) at src/utils/free_memory.c:15>:
+                                            free()
+                                        free()
+                                free_env_list() <void free_env_list (t_env *env) at src/builtins/utils/free_utils.c:15>:
+                                    free()
+                                exit()
+                            ft_strdup() <char *ft_strdup (const char *s) at libs/libft/ft_strdup.c:15>:
+                                ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                malloc()
+                            ft_strjoin() <char *ft_strjoin (char const *s1, char const *s2) at libs/libft/ft_strjoin.c:15>:
+                                ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                malloc()
+                        path_finder() <char *path_finder (char *cmd, char **env) at src/executor/path_finder.c:77>:
+                            access() <int access (const char *__name, int __type) at /usr/include/unistd.h:287>
+                            ft_strdup() <char *ft_strdup (const char *s) at libs/libft/ft_strdup.c:15>:
+                                ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                malloc()
+                            find_path_string() <char *find_path_string (char **env) at src/executor/path_finder.c:59>:
+                                ft_strnstr() <char *ft_strnstr (const char *str, const char *to_find, size_t n) at libs/libft/ft_strnstr.c:15>
+                            ft_split() <char **ft_split (char const *s, char c) at libs/libft/ft_split.c:56>:
+                                malloc()
+                                string_count() <int string_count (char const *s, char c) at libs/libft/ft_split.c:15>
+                                str_len() <int str_len (char const *str, char c, int i) at libs/libft/ft_split.c:36>
+                                ft_substr() <char *ft_substr (char const *s, unsigned int start, size_t len) at libs/libft/ft_substr.c:15>:
+                                    ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                    ft_strdup() <char *ft_strdup (const char *s) at libs/libft/ft_strdup.c:15>:
+                                        ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                        malloc()
+                                    malloc()
+                                free_array() <void free_array (char **array, int j) at libs/libft/ft_split.c:49>:
+                                    free()
+                            path_checker() <char *path_checker (char **all_path, char *cmd) at src/executor/path_finder.c:36>:
+                                malloc()
+                                ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                ft_strcpy() <char *ft_strcpy (char *dest, char *src) at src/utils/str_utils.c:60>
+                                ft_strcat() <char *ft_strcat (char *dest, char *src) at src/utils/str_utils.c:40>
+                                access() <int access (const char *__name, int __type) at /usr/include/unistd.h:287>
+                                free()
+                            free_strarr() <void free_strarr (char **strarr) at src/utils/free_memory.c:15>:
+                                free()
+                        path_error() <void path_error (char **commands) at src/executor/path_finder.c:28>:
+                            ft_putstr_fd() <void ft_putstr_fd (char *s, int fd) at libs/libft/ft_putstr_fd.c:15>:
+                                write() <ssize_t write (int __fd, const void *__buf, size_t __n) at /usr/include/unistd.h:378>
+                                ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                            free_strarr() <void free_strarr (char **strarr) at src/utils/free_memory.c:15>:
+                                free()
+                            exit()
+                        execve() <int execve (const char *__path, char *const __argv[], char *const __envp[]) at /usr/include/unistd.h:572>
+                        free_strarr() <void free_strarr (char **strarr) at src/utils/free_memory.c:15>:
+                            free()
+                close()
+                wait_for_processes() <void wait_for_processes (t_mini **data) at src/executor/multiple_commands.c:43>:
+                    count_nodes() <int count_nodes (t_parser *parser_list) at src/parser/list_utils_parser.c:15>
+                    waitpid()
+                    printf()
+            one_command() <void one_command (t_mini *data) at src/executor/executor.c:72>:
+                builtin() <int builtin (t_mini *data, t_parser *cmd) at src/builtins/utils/call_builtin_function.c:15>:
+                    builtin_in_parent() <int builtin_in_parent (char *cmd) at src/builtins/utils/call_builtin_function.c:32>:
+                        ft_strcmp() <int ft_strcmp (char *s1, char *s2) at src/utils/str_utils.c:74>
+                    make_commands_cpy() <char **make_commands_cpy (char **commands) at src/executor/utils.c:98>:
+                        count_words() <int count_words (char **commands) at src/executor/utils.c:15>:
+                        malloc()
+                        free_data_and_exit() <void free_data_and_exit (t_mini *data, int exit_code) at src/utils/free_memory.c:59>:
+                            free()
+                            free_strarr() <void free_strarr (char **strarr) at src/utils/free_memory.c:15>:
+                                free()
+                            free_lexer_list() <void free_lexer_list (t_lexer **lexer_list) at src/utils/free_memory.c:44>:
+                                free_node_lexer() <void free_node_lexer (t_lexer **node) at src/lexer/list_utils_lexer.c:15>:
+                                    free()
+                            free_parser_list() <void free_parser_list (t_parser **parser_list) at src/utils/free_memory.c:29>:
+                                free_node_parser() <void free_node_parser (t_parser **node) at src/parser/list_utils_parser.c:30>:
+                                    free_strarr() <void free_strarr (char **strarr) at src/utils/free_memory.c:15>:
+                                        free()
+                                    free()
+                            free_env_list() <void free_env_list (t_env *env) at src/builtins/utils/free_utils.c:15>:
+                                free()
+                            exit()
+                        parse_command() <int parse_command (char *command, char **result, int index) at src/executor/utils.c:77>:
+                            is_whitespace() <int is_whitespace (char c) at src/utils/str_utils.c:33>
+                            copy_word() <char *copy_word (const char *command, int start, int end) at src/executor/utils.c:63>:
+                                malloc()
+                                free_data_and_exit() <void free_data_and_exit (t_mini *data, int exit_code) at src/utils/free_memory.c:59>:
+                                    free()
+                                    free_strarr() <void free_strarr (char **strarr) at src/utils/free_memory.c:15>:
+                                        free()
+                                    free_lexer_list() <void free_lexer_list (t_lexer **lexer_list) at src/utils/free_memory.c:44>:
+                                        free_node_lexer() <void free_node_lexer (t_lexer **node) at src/lexer/list_utils_lexer.c:15>:
+                                            free()
+                                    free_parser_list() <void free_parser_list (t_parser **parser_list) at src/utils/free_memory.c:29>:
+                                        free_node_parser() <void free_node_parser (t_parser **node) at src/parser/list_utils_parser.c:30>:
+                                            free_strarr() <void free_strarr (char **strarr) at src/utils/free_memory.c:15>:
+                                                free()
+                                            free()
+                                    free_env_list() <void free_env_list (t_env *env) at src/builtins/utils/free_utils.c:15>:
+                                        free()
+                                    exit()
+                                ft_strncpy() <char *ft_strncpy (char *dest, char *src, unsigned int n) at src/utils/str_utils.c:15>:
+                        replace_marker() <void replace_marker (char **commands) at src/executor/utils.c:44>
+                    free_strarr() <void free_strarr (char **strarr) at src/utils/free_memory.c:15>:
+                        free()
+                    call_builtin_function() <int call_builtin_function (t_mini *data, t_parser *cmd) at src/builtins/utils/call_builtin_function.c:42>:
+                        ft_strcmp() <int ft_strcmp (char *s1, char *s2) at src/utils/str_utils.c:74>
+                        ft_cd() <int ft_cd (t_mini *data, t_parser *node) at src/builtins/functions/ft_cd.c:62>:
+                            doublepointerlenght() <int doublepointerlenght (char **line) at src/builtins/functions/ft_export.c:43>
+                            cd_error() <int cd_error (char *msg) at src/builtins/functions/ft_cd.c:56>:
+                                ft_putstr_fd() <void ft_putstr_fd (char *s, int fd) at libs/libft/ft_putstr_fd.c:15>:
+                                    write() <ssize_t write (int __fd, const void *__buf, size_t __n) at /usr/include/unistd.h:378>
+                                    ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                            pathishome() <char *pathishome (char **env) at src/builtins/functions/ft_cd.c:15>:
+                                ft_strncmp() <int ft_strncmp (const char *str1, const char *str2, size_t n) at libs/libft/ft_strncmp.c:15>:
+                            ft_error() <int ft_error (char *path) at src/builtins/functions/ft_cd.c:34>:
+                                access() <int access (const char *__name, int __type) at /usr/include/unistd.h:287>
+                                ft_putstr_fd() <void ft_putstr_fd (char *s, int fd) at libs/libft/ft_putstr_fd.c:15>:
+                                    write() <ssize_t write (int __fd, const void *__buf, size_t __n) at /usr/include/unistd.h:378>
+                                    ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                write() <ssize_t write (int __fd, const void *__buf, size_t __n) at /usr/include/unistd.h:378>
+                            chdir()
+                        ft_echo() <int ft_echo (t_mini *data, t_parser *cmd) at src/builtins/functions/ft_echo.c:39>:
+                            printf()
+                            is_there_flag() <int is_there_flag (char **args) at src/builtins/functions/ft_echo.c:15>:
+                                ft_strncmp() <int ft_strncmp (const char *str1, const char *str2, size_t n) at libs/libft/ft_strncmp.c:15>:
+                        ft_env() <int ft_env (t_mini *data) at src/builtins/functions/ft_env.c:15>:
+                            write() <ssize_t write (int __fd, const void *__buf, size_t __n) at /usr/include/unistd.h:378>
+                            ft_strchr() <char *ft_strchr (const char *string, int c) at libs/libft/ft_strchr.c:15>:
+                            printf()
+                        ft_exit() <int ft_exit (t_mini *data, t_parser *node) at src/builtins/functions/ft_exit.c:82>:
+                            ft_comands_len() <int ft_comands_len (char **commands) at src/builtins/functions/ft_exit.c:17>
+                            write() <ssize_t write (int __fd, const void *__buf, size_t __n) at /usr/include/unistd.h:378>
+                            check_number() <int check_number (char *number) at src/builtins/functions/ft_exit.c:27>:
+                                ft_isdigit() <int ft_isdigit (int character) at libs/libft/ft_isdigit.c:14>
+                            printf()
+                            free_data_and_exit() <void free_data_and_exit (t_mini *data, int exit_code) at src/utils/free_memory.c:59>:
+                                free()
+                                free_strarr() <void free_strarr (char **strarr) at src/utils/free_memory.c:15>:
+                                    free()
+                                free_lexer_list() <void free_lexer_list (t_lexer **lexer_list) at src/utils/free_memory.c:44>:
+                                    free_node_lexer() <void free_node_lexer (t_lexer **node) at src/lexer/list_utils_lexer.c:15>:
+                                        free()
+                                free_parser_list() <void free_parser_list (t_parser **parser_list) at src/utils/free_memory.c:29>:
+                                    free_node_parser() <void free_node_parser (t_parser **node) at src/parser/list_utils_parser.c:30>:
+                                        free_strarr() <void free_strarr (char **strarr) at src/utils/free_memory.c:15>:
+                                            free()
+                                        free()
+                                free_env_list() <void free_env_list (t_env *env) at src/builtins/utils/free_utils.c:15>:
+                                    free()
+                                exit()
+                            safe_atoi() <long long safe_atoi (char *str) at src/builtins/functions/ft_exit.c:72>:
+                                ft_strtoll() <long long ft_strtoll (const char *str) at src/builtins/functions/ft_exit.c:43>:
+                                    is_whitespace() <int is_whitespace (char c) at src/utils/str_utils.c:33>
+                                    ft_isdigit() <int ft_isdigit (int character) at libs/libft/ft_isdigit.c:14>
+                            length_2() <long long length_2 (long long exit_code, t_mini *data) at src/builtins/utils/free_utils.c:42>:
+                                printf()
+                                free_data_and_exit() <void free_data_and_exit (t_mini *data, int exit_code) at src/utils/free_memory.c:59>:
+                                    free()
+                                    free_strarr() <void free_strarr (char **strarr) at src/utils/free_memory.c:15>:
+                                        free()
+                                    free_lexer_list() <void free_lexer_list (t_lexer **lexer_list) at src/utils/free_memory.c:44>:
+                                        free_node_lexer() <void free_node_lexer (t_lexer **node) at src/lexer/list_utils_lexer.c:15>:
+                                            free()
+                                    free_parser_list() <void free_parser_list (t_parser **parser_list) at src/utils/free_memory.c:29>:
+                                        free_node_parser() <void free_node_parser (t_parser **node) at src/parser/list_utils_parser.c:30>:
+                                            free_strarr() <void free_strarr (char **strarr) at src/utils/free_memory.c:15>:
+                                                free()
+                                            free()
+                                    free_env_list() <void free_env_list (t_env *env) at src/builtins/utils/free_utils.c:15>:
+                                        free()
+                                    exit()
+                        ft_export() <int ft_export (t_mini *data, t_parser *node) at src/builtins/functions/ft_export.c:63>:
+                            doublepointerlenght() <int doublepointerlenght (char **line) at src/builtins/functions/ft_export.c:43>
+                            export_list() <t_env *export_list (t_env *original) at src/builtins/utils/export_utils.c:15>:
+                                fill_env_list() <void fill_env_list (t_env **env_cpy, const char *variable, const char *content) at src/builtins/utils/env_list.c:110>:
+                                    malloc()
+                                    write() <ssize_t write (int __fd, const void *__buf, size_t __n) at /usr/include/unistd.h:378>
+                                    exit()
+                                    ft_strdup() <char *ft_strdup (const char *s) at libs/libft/ft_strdup.c:15>:
+                                        ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                        malloc()
+                                    mark_cont() <char *mark_cont (char *content) at src/builtins/utils/env_list.c:94>:
+                                        ft_strdup() <char *ft_strdup (const char *s) at libs/libft/ft_strdup.c:15>:
+                                            ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                            malloc()
+                                    add_last_node() <void add_last_node (t_env **env_cpy, t_env *new_node) at src/builtins/utils/list_utils.c:15>:
+                                        ft_last_node() <t_env *ft_last_node (t_env *env_cpy) at src/builtins/utils/list_utils.c:29>
+                                bubble_sort_env_list() <void bubble_sort_env_list (t_env **head) at src/builtins/utils/export_utils.c:44>:
+                                    strcmp() <int strcmp (const char *__s1, const char *__s2) at /usr/include/string.h:156>
+                                    swap_nodes() <void swap_nodes (t_env *a, t_env *b) at src/builtins/utils/export_utils.c:31>
+                            ft_strcmp() <int ft_strcmp (char *s1, char *s2) at src/utils/str_utils.c:74>
+                            print_export_list() <void print_export_list (t_env *export_cpy) at src/builtins/utils/export_utils3.c:79>:
+                                print_export_variable() <void print_export_variable (t_env *temp) at src/builtins/functions/ft_export.c:53>:
+                                    ft_strchr() <char *ft_strchr (const char *string, int c) at libs/libft/ft_strchr.c:15>:
+                                    printf()
+                            process_export_variables() <int process_export_variables (t_mini *data, char **arg, int len, t_content *content) at src/builtins/utils/export_utils2.c:17>:
+                                ft_sintax() <int ft_sintax (char *arg) at src/builtins/utils/export_utils3.c:68>:
+                                    check_numeric_syntax() <int check_numeric_syntax (char *arg) at src/builtins/utils/export_utils3.c:15>:
+                                        ft_isdigit() <int ft_isdigit (int character) at libs/libft/ft_isdigit.c:14>
+                                        invalid_arg() <int invalid_arg (char *arg) at src/builtins/utils/list_utils.c:52>:
+                                            ft_putstr_fd() <void ft_putstr_fd (char *s, int fd) at libs/libft/ft_putstr_fd.c:15>:
+                                                write() <ssize_t write (int __fd, const void *__buf, size_t __n) at /usr/include/unistd.h:378>
+                                                ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                    check_dash_and_equals_syntax() <int check_dash_and_equals_syntax (char *arg) at src/builtins/utils/export_utils3.c:31>:
+                                        ft_strchr() <char *ft_strchr (const char *string, int c) at libs/libft/ft_strchr.c:15>:
+                                        invalid_arg() <int invalid_arg (char *arg) at src/builtins/utils/list_utils.c:52>:
+                                            ft_putstr_fd() <void ft_putstr_fd (char *s, int fd) at libs/libft/ft_putstr_fd.c:15>:
+                                                write() <ssize_t write (int __fd, const void *__buf, size_t __n) at /usr/include/unistd.h:378>
+                                                ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                        ft_export_error() <int ft_export_error (void) at src/builtins/utils/list_utils.c:44>:
+                                            ft_putstr_fd() <void ft_putstr_fd (char *s, int fd) at libs/libft/ft_putstr_fd.c:15>:
+                                                write() <ssize_t write (int __fd, const void *__buf, size_t __n) at /usr/include/unistd.h:378>
+                                                ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                    check_identifier_syntax() <int check_identifier_syntax (char *arg) at src/builtins/utils/export_utils3.c:52>:
+                                        ft_isalpha() <int ft_isalpha (int character) at libs/libft/ft_isalpha.c:13>
+                                        invalid_arg() <int invalid_arg (char *arg) at src/builtins/utils/list_utils.c:52>:
+                                            ft_putstr_fd() <void ft_putstr_fd (char *s, int fd) at libs/libft/ft_putstr_fd.c:15>:
+                                                write() <ssize_t write (int __fd, const void *__buf, size_t __n) at /usr/include/unistd.h:378>
+                                                ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                        ft_isalnum() <int ft_isalnum (int character) at libs/libft/ft_isalnum.c:15>
+                                process_single_export_variable() <void process_single_export_variable (t_mini *data, char **arg, int i, t_content *content) at src/builtins/utils/export_utils2.c:35>:
+                                    separate_varcont() <int separate_varcont (char *line, t_content *content) at src/builtins/utils/env_list.c:71>:
+                                        ft_strchr() <char *ft_strchr (const char *string, int c) at libs/libft/ft_strchr.c:15>:
+                                        ft_strndup() <char *ft_strndup (const char *s, size_t n) at src/builtins/functions/ft_unset.c:41>:
+                                            ft_strnlen() <size_t ft_strnlen (const char *string, size_t max) at src/builtins/functions/ft_unset.c:31>
+                                            malloc()
+                                            ft_memcpy() <void *ft_memcpy (void *dest, const void *src, size_t n) at libs/libft/ft_memcpy.c:15>:
+                                        ft_strdup() <char *ft_strdup (const char *s) at libs/libft/ft_strdup.c:15>:
+                                            ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                            malloc()
+                                        free()
+                                    find_env_variable() <t_env *find_env_variable (t_env *env, const char *variable) at src/builtins/functions/ft_export.c:15>:
+                                        ft_strtrim() <char *ft_strtrim (char const *s1, char const *set) at libs/libft/ft_strtrim.c:84>:
+                                            ft_strdup() <char *ft_strdup (const char *s) at libs/libft/ft_strdup.c:15>:
+                                                ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                                malloc()
+                                            string_start() <int string_start (char const *s1, char const *set) at libs/libft/ft_strtrim.c:16>
+                                            string_end() <int string_end (char const *s1, char const *set) at libs/libft/ft_strtrim.c:43>:
+                                                ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                            malloc()
+                                            fill_string() <void fill_string (char const *s1, char *new_str, int start, int end) at libs/libft/ft_strtrim.c:70>
+                                        ft_strjoin() <char *ft_strjoin (char const *s1, char const *s2) at libs/libft/ft_strjoin.c:15>:
+                                            ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                            malloc()
+                                        ft_strcmp() <int ft_strcmp (char *s1, char *s2) at src/utils/str_utils.c:74>
+                                        free()
+                                    add_new_variable() <void add_new_variable (t_mini *data, t_content *content) at src/builtins/utils/export_utils2.c:53>:
+                                        fill_env_list() <void fill_env_list (t_env **env_cpy, const char *variable, const char *content) at src/builtins/utils/env_list.c:110>:
+                                            malloc()
+                                            write() <ssize_t write (int __fd, const void *__buf, size_t __n) at /usr/include/unistd.h:378>
+                                            exit()
+                                            ft_strdup() <char *ft_strdup (const char *s) at libs/libft/ft_strdup.c:15>:
+                                                ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                                malloc()
+                                            mark_cont() <char *mark_cont (char *content) at src/builtins/utils/env_list.c:94>:
+                                                ft_strdup() <char *ft_strdup (const char *s) at libs/libft/ft_strdup.c:15>:
+                                                    ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                                    malloc()
+                                            add_last_node() <void add_last_node (t_env **env_cpy, t_env *new_node) at src/builtins/utils/list_utils.c:15>:
+                                                ft_last_node() <t_env *ft_last_node (t_env *env_cpy) at src/builtins/utils/list_utils.c:29>
+                                    free_t_content() <void free_t_content (t_content *content) at src/builtins/utils/free_utils.c:31>:
+                                        free()
+                                    update_existing_variable() <void update_existing_variable (t_env *existing, t_content *content) at src/builtins/utils/export_utils2.c:61>:
+                                        ft_strdup() <char *ft_strdup (const char *s) at libs/libft/ft_strdup.c:15>:
+                                            ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                            malloc()
+                                        ft_strchr() <char *ft_strchr (const char *string, int c) at libs/libft/ft_strchr.c:15>:
+                                        free()
+                                        ft_strjoin() <char *ft_strjoin (char const *s1, char const *s2) at libs/libft/ft_strjoin.c:15>:
+                                            ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                            malloc()
+                                        mark_cont() <char *mark_cont (char *content) at src/builtins/utils/env_list.c:94>:
+                                            ft_strdup() <char *ft_strdup (const char *s) at libs/libft/ft_strdup.c:15>:
+                                                ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                                malloc()
+                            free_env_list() <void free_env_list (t_env *env) at src/builtins/utils/free_utils.c:15>:
+                                free()
+                        ft_pwd() <int ft_pwd (void) at src/builtins/functions/ft_pwd.c:15>:
+                            getcwd() <char *getcwd (char *__buf, size_t __size) at /usr/include/unistd.h:531>
+                            perror()
+                            printf()
+                            free()
+                        ft_unset() <int ft_unset (t_mini *data, t_parser *node) at src/builtins/functions/ft_unset.c:69>:
+                            ft_strncmp() <int ft_strncmp (const char *str1, const char *str2, size_t n) at libs/libft/ft_strncmp.c:15>:
+                            ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                            ft_free_from_env() <int ft_free_from_env (t_env **head, t_env *env) at src/builtins/functions/ft_unset.c:15>:
+                                free()
+                check_heredoc() <void check_heredoc (t_mini *data, t_parser *cmd) at src/executor/heredoc.c:88>:
+                    handle_heredoc() <void handle_heredoc (t_mini *data, t_parser **cmd, t_lexer **heredoc) at src/executor/heredoc.c:71>:
+                        free()
+                        new_heredoc_name() <char *new_heredoc_name (void) at src/executor/heredoc.c:58>:
+                            ft_itoa() <char *ft_itoa (int n) at libs/libft/ft_itoa.c:56>:
+                                count_digits() <int count_digits (long nb) at libs/libft/ft_itoa.c:15>
+                                malloc()
+                                fill_str() <void fill_str (char *str, int digits, long nb) at libs/libft/ft_itoa.c:32>
+                            ft_strjoin() <char *ft_strjoin (char const *s1, char const *s2) at libs/libft/ft_strjoin.c:15>:
+                                ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                malloc()
+                            free()
+                        ft_strdup() <char *ft_strdup (const char *s) at libs/libft/ft_strdup.c:15>:
+                            ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                            malloc()
+                        replace_quotes() <void replace_quotes (char *str, int *marker_count, int i) at src/expander/clean_quotes.c:33>:
+                            init_quote_struct() <void init_quote_struct (t_quotes *q) at src/expander/clean_quotes.c:25>
+                            replace_and_reset() <void replace_and_reset (char *str, int *marker_count, int *first, int *second) at src/expander/clean_quotes.c:15>
+                        remove_marker() <char *remove_marker (t_mini *data, char *str, int marker_count, char marker) at src/expander/clean_quotes.c:61>:
+                            malloc()
+                            ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                            free_data_and_exit() <void free_data_and_exit (t_mini *data, int exit_code) at src/utils/free_memory.c:59>:
+                                free()
+                                free_strarr() <void free_strarr (char **strarr) at src/utils/free_memory.c:15>:
+                                    free()
+                                free_lexer_list() <void free_lexer_list (t_lexer **lexer_list) at src/utils/free_memory.c:44>:
+                                    free_node_lexer() <void free_node_lexer (t_lexer **node) at src/lexer/list_utils_lexer.c:15>:
+                                        free()
+                                free_parser_list() <void free_parser_list (t_parser **parser_list) at src/utils/free_memory.c:29>:
+                                    free_node_parser() <void free_node_parser (t_parser **node) at src/parser/list_utils_parser.c:30>:
+                                        free_strarr() <void free_strarr (char **strarr) at src/utils/free_memory.c:15>:
+                                            free()
+                                        free()
+                                free_env_list() <void free_env_list (t_env *env) at src/builtins/utils/free_utils.c:15>:
+                                    free()
+                                exit()
+                            free()
+                        make_heredoc() <int make_heredoc (t_mini *data, t_parser **cmd, char *heredoc_token) at src/executor/heredoc.c:36>:
+                            open() <int open (const char *__file, int __oflag, ...) at /usr/include/fcntl.h:181>
+                            readline()
+                            break_case() <int break_case (t_mini *data, char *line, t_parser **cmd) at src/executor/heredoc.c:15>:
+                                free()
+                                print_err_hd() <void print_err_hd (char *delim) at src/expander/exp_redir.c:15>:
+                                    ft_putstr_fd() <void ft_putstr_fd (char *s, int fd) at libs/libft/ft_putstr_fd.c:15>:
+                                        write() <ssize_t write (int __fd, const void *__buf, size_t __n) at /usr/include/unistd.h:378>
+                                        ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                ft_strcmp() <int ft_strcmp (char *s1, char *s2) at src/utils/str_utils.c:74>
+                            heredoc_is_quoted() <int heredoc_is_quoted (char *heredoc_token) at src/executor/path_finder.c:14>
+                            expand_string() <void expand_string (t_mini *data, char **string) at src/expander/expander.c:40>:
+                                ft_strdup() <char *ft_strdup (const char *s) at libs/libft/ft_strdup.c:15>:
+                                    ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                    malloc()
+                                env_expand() <char *env_expand (t_mini *data, char **tmp, char **string) at src/expander/expander.c:15>:
+                                    is_whitespace() <int is_whitespace (char c) at src/utils/str_utils.c:33>
+                                    free()
+                                    handle_question_mark() <char *handle_question_mark (t_mini *data, char *string, int start, int exit_code) at src/expander/non_env_expand.c:42>:
+                                        ft_itoa() <char *ft_itoa (int n) at libs/libft/ft_itoa.c:56>:
+                                            count_digits() <int count_digits (long nb) at libs/libft/ft_itoa.c:15>
+                                            malloc()
+                                            fill_str() <void fill_str (char *str, int digits, long nb) at libs/libft/ft_itoa.c:32>
+                                        ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                        expand_and_replace_qm() <char *expand_and_replace_qm (t_mini *data, char *string, int start, char *exit_code) at src/expander/non_env_expand.c:15>:
+                                            ft_substr() <char *ft_substr (char const *s, unsigned int start, size_t len) at libs/libft/ft_substr.c:15>:
+                                                ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                                ft_strdup() <char *ft_strdup (const char *s) at libs/libft/ft_strdup.c:15>:
+                                                    ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                                    malloc()
+                                                malloc()
+                                            ft_strjoin() <char *ft_strjoin (char const *s1, char const *s2) at libs/libft/ft_strjoin.c:15>:
+                                                ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                                malloc()
+                                            ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                            free()
+                                    is_quote() <int is_quote (char c) at src/lexer/quotes.c:15>
+                                    is_delim() <int is_delim (char c) at src/expander/exp_redir.c:25>
+                                    expand_substring() <char *expand_substring (t_mini *data, char *string, int start, int end) at src/expander/env_expand.c:73>:
+                                        ft_substr() <char *ft_substr (char const *s, unsigned int start, size_t len) at libs/libft/ft_substr.c:15>:
+                                            ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                            ft_strdup() <char *ft_strdup (const char *s) at libs/libft/ft_strdup.c:15>:
+                                                ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                                malloc()
+                                            malloc()
+                                        ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                        ft_strcmp() <int ft_strcmp (char *s1, char *s2) at src/utils/str_utils.c:74>
+                                        free()
+                                        expand_var() <char *expand_var (t_mini *data, char *string, t_xy xy, char *expansion) at src/expander/env_expand.c:55>:
+                                            ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                            mark_expansion() <char *mark_expansion (char *expansion) at src/expander/env_expand.c:44>:
+                                                ft_strjoin() <char *ft_strjoin (char const *s1, char const *s2) at libs/libft/ft_strjoin.c:15>:
+                                                    ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                                    malloc()
+                                                free()
+                                            expand_and_reassemble() <char *expand_and_reassemble (t_mini *data, char *string, t_xy xy, char *expansion) at src/expander/env_expand.c:15>:
+                                                ft_substr() <char *ft_substr (char const *s, unsigned int start, size_t len) at libs/libft/ft_substr.c:15>:
+                                                    ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                                    ft_strdup() <char *ft_strdup (const char *s) at libs/libft/ft_strdup.c:15>:
+                                                        ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                                        malloc()
+                                                    malloc()
+                                                ft_strjoin() <char *ft_strjoin (char const *s1, char const *s2) at libs/libft/ft_strjoin.c:15>:
+                                                    ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                                    malloc()
+                                                ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                                free()
+                                            free()
+                                        unmatched_var() <char *unmatched_var (t_mini *data, char *string, int start, int end) at src/expander/non_env_expand.c:80>:
+                                            ft_strdup() <char *ft_strdup (const char *s) at libs/libft/ft_strdup.c:15>:
+                                                ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                                malloc()
+                                            join_strings() <char *join_strings (t_mini *data, char *string, int start, int end) at src/expander/non_env_expand.c:55>:
+                                                ft_strdup() <char *ft_strdup (const char *s) at libs/libft/ft_strdup.c:15>:
+                                                    ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                                    malloc()
+                                                ft_substr() <char *ft_substr (char const *s, unsigned int start, size_t len) at libs/libft/ft_substr.c:15>:
+                                                    ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                                    ft_strdup() <char *ft_strdup (const char *s) at libs/libft/ft_strdup.c:15>:
+                                                        ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                                        malloc()
+                                                    malloc()
+                                                ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                                ft_strjoin() <char *ft_strjoin (char const *s1, char const *s2) at libs/libft/ft_strjoin.c:15>:
+                                                    ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                                    malloc()
+                                                free()
+                                    ft_strdup() <char *ft_strdup (const char *s) at libs/libft/ft_strdup.c:15>:
+                                        ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                        malloc()
+                                free()
+                            write() <ssize_t write (int __fd, const void *__buf, size_t __n) at /usr/include/unistd.h:378>
+                            ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                            free()
+                            close()
+                fork()
+                free_data_and_exit() <void free_data_and_exit (t_mini *data, int exit_code) at src/utils/free_memory.c:59>:
+                    free()
+                    free_strarr() <void free_strarr (char **strarr) at src/utils/free_memory.c:15>:
+                        free()
+                    free_lexer_list() <void free_lexer_list (t_lexer **lexer_list) at src/utils/free_memory.c:44>:
+                        free_node_lexer() <void free_node_lexer (t_lexer **node) at src/lexer/list_utils_lexer.c:15>:
+                            free()
+                    free_parser_list() <void free_parser_list (t_parser **parser_list) at src/utils/free_memory.c:29>:
+                        free_node_parser() <void free_node_parser (t_parser **node) at src/parser/list_utils_parser.c:30>:
+                            free_strarr() <void free_strarr (char **strarr) at src/utils/free_memory.c:15>:
+                                free()
+                            free()
+                    free_env_list() <void free_env_list (t_env *env) at src/builtins/utils/free_utils.c:15>:
+                        free()
+                    exit()
+                execute_command() <void execute_command (t_mini *data, t_parser *cmd) at src/executor/executor.c:47>:
+                    new_commands() <char **new_commands (t_parser *cmd) at src/executor/executor.c:35>:
+                        make_commands_cpy() <char **make_commands_cpy (char **commands) at src/executor/utils.c:98>:
+                            count_words() <int count_words (char **commands) at src/executor/utils.c:15>:
+                            malloc()
+                            free_data_and_exit() <void free_data_and_exit (t_mini *data, int exit_code) at src/utils/free_memory.c:59>:
+                                free()
+                                free_strarr() <void free_strarr (char **strarr) at src/utils/free_memory.c:15>:
+                                    free()
+                                free_lexer_list() <void free_lexer_list (t_lexer **lexer_list) at src/utils/free_memory.c:44>:
+                                    free_node_lexer() <void free_node_lexer (t_lexer **node) at src/lexer/list_utils_lexer.c:15>:
+                                        free()
+                                free_parser_list() <void free_parser_list (t_parser **parser_list) at src/utils/free_memory.c:29>:
+                                    free_node_parser() <void free_node_parser (t_parser **node) at src/parser/list_utils_parser.c:30>:
+                                        free_strarr() <void free_strarr (char **strarr) at src/utils/free_memory.c:15>:
+                                            free()
+                                        free()
+                                free_env_list() <void free_env_list (t_env *env) at src/builtins/utils/free_utils.c:15>:
+                                    free()
+                                exit()
+                            parse_command() <int parse_command (char *command, char **result, int index) at src/executor/utils.c:77>:
+                                is_whitespace() <int is_whitespace (char c) at src/utils/str_utils.c:33>
+                                copy_word() <char *copy_word (const char *command, int start, int end) at src/executor/utils.c:63>:
+                                    malloc()
+                                    free_data_and_exit() <void free_data_and_exit (t_mini *data, int exit_code) at src/utils/free_memory.c:59>:
+                                        free()
+                                        free_strarr() <void free_strarr (char **strarr) at src/utils/free_memory.c:15>:
+                                            free()
+                                        free_lexer_list() <void free_lexer_list (t_lexer **lexer_list) at src/utils/free_memory.c:44>:
+                                            free_node_lexer() <void free_node_lexer (t_lexer **node) at src/lexer/list_utils_lexer.c:15>:
+                                                free()
+                                        free_parser_list() <void free_parser_list (t_parser **parser_list) at src/utils/free_memory.c:29>:
+                                            free_node_parser() <void free_node_parser (t_parser **node) at src/parser/list_utils_parser.c:30>:
+                                                free_strarr() <void free_strarr (char **strarr) at src/utils/free_memory.c:15>:
+                                                    free()
+                                                free()
+                                        free_env_list() <void free_env_list (t_env *env) at src/builtins/utils/free_utils.c:15>:
+                                            free()
+                                        exit()
+                                    ft_strncpy() <char *ft_strncpy (char *dest, char *src, unsigned int n) at src/utils/str_utils.c:15>:
+                            replace_marker() <void replace_marker (char **commands) at src/executor/utils.c:44>
+                        free_strarr() <void free_strarr (char **strarr) at src/utils/free_memory.c:15>:
+                            free()
+                    exit()
+                    is_a_directory() <int is_a_directory (char *cmd) at src/executor/executor.c:16>:
+                        opendir()
+                        closedir()
+                        ft_putstr_fd() <void ft_putstr_fd (char *s, int fd) at libs/libft/ft_putstr_fd.c:15>:
+                            write() <ssize_t write (int __fd, const void *__buf, size_t __n) at /usr/include/unistd.h:378>
+                            ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                    redirections() <int redirections (t_mini *data, t_parser *cmd) at src/executor/redirections.c:83>:
+                        dispatch_redirections() <int dispatch_redirections (t_mini *data, t_lexer *redirection, t_parser *cmd) at src/executor/redirections.c:67>:
+                            open() <int open (const char *__file, int __oflag, ...) at /usr/include/fcntl.h:181>
+                            check_fd() <int check_fd (int fd, int type, char *str) at src/executor/redirections.c:42>:
+                                ft_putstr_fd() <void ft_putstr_fd (char *s, int fd) at libs/libft/ft_putstr_fd.c:15>:
+                                    write() <ssize_t write (int __fd, const void *__buf, size_t __n) at /usr/include/unistd.h:378>
+                                    ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                dup2() <int dup2 (int __fd, int __fd2) at /usr/include/unistd.h:555>
+                                close()
+                    call_builtin_function() <int call_builtin_function (t_mini *data, t_parser *cmd) at src/builtins/utils/call_builtin_function.c:42>:
+                        ft_strcmp() <int ft_strcmp (char *s1, char *s2) at src/utils/str_utils.c:74>
+                        ft_cd() <int ft_cd (t_mini *data, t_parser *node) at src/builtins/functions/ft_cd.c:62>:
+                            doublepointerlenght() <int doublepointerlenght (char **line) at src/builtins/functions/ft_export.c:43>
+                            cd_error() <int cd_error (char *msg) at src/builtins/functions/ft_cd.c:56>:
+                                ft_putstr_fd() <void ft_putstr_fd (char *s, int fd) at libs/libft/ft_putstr_fd.c:15>:
+                                    write() <ssize_t write (int __fd, const void *__buf, size_t __n) at /usr/include/unistd.h:378>
+                                    ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                            pathishome() <char *pathishome (char **env) at src/builtins/functions/ft_cd.c:15>:
+                                ft_strncmp() <int ft_strncmp (const char *str1, const char *str2, size_t n) at libs/libft/ft_strncmp.c:15>:
+                            ft_error() <int ft_error (char *path) at src/builtins/functions/ft_cd.c:34>:
+                                access() <int access (const char *__name, int __type) at /usr/include/unistd.h:287>
+                                ft_putstr_fd() <void ft_putstr_fd (char *s, int fd) at libs/libft/ft_putstr_fd.c:15>:
+                                    write() <ssize_t write (int __fd, const void *__buf, size_t __n) at /usr/include/unistd.h:378>
+                                    ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                write() <ssize_t write (int __fd, const void *__buf, size_t __n) at /usr/include/unistd.h:378>
+                            chdir()
+                        ft_echo() <int ft_echo (t_mini *data, t_parser *cmd) at src/builtins/functions/ft_echo.c:39>:
+                            printf()
+                            is_there_flag() <int is_there_flag (char **args) at src/builtins/functions/ft_echo.c:15>:
+                                ft_strncmp() <int ft_strncmp (const char *str1, const char *str2, size_t n) at libs/libft/ft_strncmp.c:15>:
+                        ft_env() <int ft_env (t_mini *data) at src/builtins/functions/ft_env.c:15>:
+                            write() <ssize_t write (int __fd, const void *__buf, size_t __n) at /usr/include/unistd.h:378>
+                            ft_strchr() <char *ft_strchr (const char *string, int c) at libs/libft/ft_strchr.c:15>:
+                            printf()
+                        ft_exit() <int ft_exit (t_mini *data, t_parser *node) at src/builtins/functions/ft_exit.c:82>:
+                            ft_comands_len() <int ft_comands_len (char **commands) at src/builtins/functions/ft_exit.c:17>
+                            write() <ssize_t write (int __fd, const void *__buf, size_t __n) at /usr/include/unistd.h:378>
+                            check_number() <int check_number (char *number) at src/builtins/functions/ft_exit.c:27>:
+                                ft_isdigit() <int ft_isdigit (int character) at libs/libft/ft_isdigit.c:14>
+                            printf()
+                            free_data_and_exit() <void free_data_and_exit (t_mini *data, int exit_code) at src/utils/free_memory.c:59>:
+                                free()
+                                free_strarr() <void free_strarr (char **strarr) at src/utils/free_memory.c:15>:
+                                    free()
+                                free_lexer_list() <void free_lexer_list (t_lexer **lexer_list) at src/utils/free_memory.c:44>:
+                                    free_node_lexer() <void free_node_lexer (t_lexer **node) at src/lexer/list_utils_lexer.c:15>:
+                                        free()
+                                free_parser_list() <void free_parser_list (t_parser **parser_list) at src/utils/free_memory.c:29>:
+                                    free_node_parser() <void free_node_parser (t_parser **node) at src/parser/list_utils_parser.c:30>:
+                                        free_strarr() <void free_strarr (char **strarr) at src/utils/free_memory.c:15>:
+                                            free()
+                                        free()
+                                free_env_list() <void free_env_list (t_env *env) at src/builtins/utils/free_utils.c:15>:
+                                    free()
+                                exit()
+                            safe_atoi() <long long safe_atoi (char *str) at src/builtins/functions/ft_exit.c:72>:
+                                ft_strtoll() <long long ft_strtoll (const char *str) at src/builtins/functions/ft_exit.c:43>:
+                                    is_whitespace() <int is_whitespace (char c) at src/utils/str_utils.c:33>
+                                    ft_isdigit() <int ft_isdigit (int character) at libs/libft/ft_isdigit.c:14>
+                            length_2() <long long length_2 (long long exit_code, t_mini *data) at src/builtins/utils/free_utils.c:42>:
+                                printf()
+                                free_data_and_exit() <void free_data_and_exit (t_mini *data, int exit_code) at src/utils/free_memory.c:59>:
+                                    free()
+                                    free_strarr() <void free_strarr (char **strarr) at src/utils/free_memory.c:15>:
+                                        free()
+                                    free_lexer_list() <void free_lexer_list (t_lexer **lexer_list) at src/utils/free_memory.c:44>:
+                                        free_node_lexer() <void free_node_lexer (t_lexer **node) at src/lexer/list_utils_lexer.c:15>:
+                                            free()
+                                    free_parser_list() <void free_parser_list (t_parser **parser_list) at src/utils/free_memory.c:29>:
+                                        free_node_parser() <void free_node_parser (t_parser **node) at src/parser/list_utils_parser.c:30>:
+                                            free_strarr() <void free_strarr (char **strarr) at src/utils/free_memory.c:15>:
+                                                free()
+                                            free()
+                                    free_env_list() <void free_env_list (t_env *env) at src/builtins/utils/free_utils.c:15>:
+                                        free()
+                                    exit()
+                        ft_export() <int ft_export (t_mini *data, t_parser *node) at src/builtins/functions/ft_export.c:63>:
+                            doublepointerlenght() <int doublepointerlenght (char **line) at src/builtins/functions/ft_export.c:43>
+                            export_list() <t_env *export_list (t_env *original) at src/builtins/utils/export_utils.c:15>:
+                                fill_env_list() <void fill_env_list (t_env **env_cpy, const char *variable, const char *content) at src/builtins/utils/env_list.c:110>:
+                                    malloc()
+                                    write() <ssize_t write (int __fd, const void *__buf, size_t __n) at /usr/include/unistd.h:378>
+                                    exit()
+                                    ft_strdup() <char *ft_strdup (const char *s) at libs/libft/ft_strdup.c:15>:
+                                        ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                        malloc()
+                                    mark_cont() <char *mark_cont (char *content) at src/builtins/utils/env_list.c:94>:
+                                        ft_strdup() <char *ft_strdup (const char *s) at libs/libft/ft_strdup.c:15>:
+                                            ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                            malloc()
+                                    add_last_node() <void add_last_node (t_env **env_cpy, t_env *new_node) at src/builtins/utils/list_utils.c:15>:
+                                        ft_last_node() <t_env *ft_last_node (t_env *env_cpy) at src/builtins/utils/list_utils.c:29>
+                                bubble_sort_env_list() <void bubble_sort_env_list (t_env **head) at src/builtins/utils/export_utils.c:44>:
+                                    strcmp() <int strcmp (const char *__s1, const char *__s2) at /usr/include/string.h:156>
+                                    swap_nodes() <void swap_nodes (t_env *a, t_env *b) at src/builtins/utils/export_utils.c:31>
+                            ft_strcmp() <int ft_strcmp (char *s1, char *s2) at src/utils/str_utils.c:74>
+                            print_export_list() <void print_export_list (t_env *export_cpy) at src/builtins/utils/export_utils3.c:79>:
+                                print_export_variable() <void print_export_variable (t_env *temp) at src/builtins/functions/ft_export.c:53>:
+                                    ft_strchr() <char *ft_strchr (const char *string, int c) at libs/libft/ft_strchr.c:15>:
+                                    printf()
+                            process_export_variables() <int process_export_variables (t_mini *data, char **arg, int len, t_content *content) at src/builtins/utils/export_utils2.c:17>:
+                                ft_sintax() <int ft_sintax (char *arg) at src/builtins/utils/export_utils3.c:68>:
+                                    check_numeric_syntax() <int check_numeric_syntax (char *arg) at src/builtins/utils/export_utils3.c:15>:
+                                        ft_isdigit() <int ft_isdigit (int character) at libs/libft/ft_isdigit.c:14>
+                                        invalid_arg() <int invalid_arg (char *arg) at src/builtins/utils/list_utils.c:52>:
+                                            ft_putstr_fd() <void ft_putstr_fd (char *s, int fd) at libs/libft/ft_putstr_fd.c:15>:
+                                                write() <ssize_t write (int __fd, const void *__buf, size_t __n) at /usr/include/unistd.h:378>
+                                                ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                    check_dash_and_equals_syntax() <int check_dash_and_equals_syntax (char *arg) at src/builtins/utils/export_utils3.c:31>:
+                                        ft_strchr() <char *ft_strchr (const char *string, int c) at libs/libft/ft_strchr.c:15>:
+                                        invalid_arg() <int invalid_arg (char *arg) at src/builtins/utils/list_utils.c:52>:
+                                            ft_putstr_fd() <void ft_putstr_fd (char *s, int fd) at libs/libft/ft_putstr_fd.c:15>:
+                                                write() <ssize_t write (int __fd, const void *__buf, size_t __n) at /usr/include/unistd.h:378>
+                                                ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                        ft_export_error() <int ft_export_error (void) at src/builtins/utils/list_utils.c:44>:
+                                            ft_putstr_fd() <void ft_putstr_fd (char *s, int fd) at libs/libft/ft_putstr_fd.c:15>:
+                                                write() <ssize_t write (int __fd, const void *__buf, size_t __n) at /usr/include/unistd.h:378>
+                                                ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                    check_identifier_syntax() <int check_identifier_syntax (char *arg) at src/builtins/utils/export_utils3.c:52>:
+                                        ft_isalpha() <int ft_isalpha (int character) at libs/libft/ft_isalpha.c:13>
+                                        invalid_arg() <int invalid_arg (char *arg) at src/builtins/utils/list_utils.c:52>:
+                                            ft_putstr_fd() <void ft_putstr_fd (char *s, int fd) at libs/libft/ft_putstr_fd.c:15>:
+                                                write() <ssize_t write (int __fd, const void *__buf, size_t __n) at /usr/include/unistd.h:378>
+                                                ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                        ft_isalnum() <int ft_isalnum (int character) at libs/libft/ft_isalnum.c:15>
+                                process_single_export_variable() <void process_single_export_variable (t_mini *data, char **arg, int i, t_content *content) at src/builtins/utils/export_utils2.c:35>:
+                                    separate_varcont() <int separate_varcont (char *line, t_content *content) at src/builtins/utils/env_list.c:71>:
+                                        ft_strchr() <char *ft_strchr (const char *string, int c) at libs/libft/ft_strchr.c:15>:
+                                        ft_strndup() <char *ft_strndup (const char *s, size_t n) at src/builtins/functions/ft_unset.c:41>:
+                                            ft_strnlen() <size_t ft_strnlen (const char *string, size_t max) at src/builtins/functions/ft_unset.c:31>
+                                            malloc()
+                                            ft_memcpy() <void *ft_memcpy (void *dest, const void *src, size_t n) at libs/libft/ft_memcpy.c:15>:
+                                        ft_strdup() <char *ft_strdup (const char *s) at libs/libft/ft_strdup.c:15>:
+                                            ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                            malloc()
+                                        free()
+                                    find_env_variable() <t_env *find_env_variable (t_env *env, const char *variable) at src/builtins/functions/ft_export.c:15>:
+                                        ft_strtrim() <char *ft_strtrim (char const *s1, char const *set) at libs/libft/ft_strtrim.c:84>:
+                                            ft_strdup() <char *ft_strdup (const char *s) at libs/libft/ft_strdup.c:15>:
+                                                ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                                malloc()
+                                            string_start() <int string_start (char const *s1, char const *set) at libs/libft/ft_strtrim.c:16>
+                                            string_end() <int string_end (char const *s1, char const *set) at libs/libft/ft_strtrim.c:43>:
+                                                ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                            malloc()
+                                            fill_string() <void fill_string (char const *s1, char *new_str, int start, int end) at libs/libft/ft_strtrim.c:70>
+                                        ft_strjoin() <char *ft_strjoin (char const *s1, char const *s2) at libs/libft/ft_strjoin.c:15>:
+                                            ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                            malloc()
+                                        ft_strcmp() <int ft_strcmp (char *s1, char *s2) at src/utils/str_utils.c:74>
+                                        free()
+                                    add_new_variable() <void add_new_variable (t_mini *data, t_content *content) at src/builtins/utils/export_utils2.c:53>:
+                                        fill_env_list() <void fill_env_list (t_env **env_cpy, const char *variable, const char *content) at src/builtins/utils/env_list.c:110>:
+                                            malloc()
+                                            write() <ssize_t write (int __fd, const void *__buf, size_t __n) at /usr/include/unistd.h:378>
+                                            exit()
+                                            ft_strdup() <char *ft_strdup (const char *s) at libs/libft/ft_strdup.c:15>:
+                                                ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                                malloc()
+                                            mark_cont() <char *mark_cont (char *content) at src/builtins/utils/env_list.c:94>:
+                                                ft_strdup() <char *ft_strdup (const char *s) at libs/libft/ft_strdup.c:15>:
+                                                    ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                                    malloc()
+                                            add_last_node() <void add_last_node (t_env **env_cpy, t_env *new_node) at src/builtins/utils/list_utils.c:15>:
+                                                ft_last_node() <t_env *ft_last_node (t_env *env_cpy) at src/builtins/utils/list_utils.c:29>
+                                    free_t_content() <void free_t_content (t_content *content) at src/builtins/utils/free_utils.c:31>:
+                                        free()
+                                    update_existing_variable() <void update_existing_variable (t_env *existing, t_content *content) at src/builtins/utils/export_utils2.c:61>:
+                                        ft_strdup() <char *ft_strdup (const char *s) at libs/libft/ft_strdup.c:15>:
+                                            ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                            malloc()
+                                        ft_strchr() <char *ft_strchr (const char *string, int c) at libs/libft/ft_strchr.c:15>:
+                                        free()
+                                        ft_strjoin() <char *ft_strjoin (char const *s1, char const *s2) at libs/libft/ft_strjoin.c:15>:
+                                            ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                            malloc()
+                                        mark_cont() <char *mark_cont (char *content) at src/builtins/utils/env_list.c:94>:
+                                            ft_strdup() <char *ft_strdup (const char *s) at libs/libft/ft_strdup.c:15>:
+                                                ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                                malloc()
+                            free_env_list() <void free_env_list (t_env *env) at src/builtins/utils/free_utils.c:15>:
+                                free()
+                        ft_pwd() <int ft_pwd (void) at src/builtins/functions/ft_pwd.c:15>:
+                            getcwd() <char *getcwd (char *__buf, size_t __size) at /usr/include/unistd.h:531>
+                            perror()
+                            printf()
+                            free()
+                        ft_unset() <int ft_unset (t_mini *data, t_parser *node) at src/builtins/functions/ft_unset.c:69>:
+                            ft_strncmp() <int ft_strncmp (const char *str1, const char *str2, size_t n) at libs/libft/ft_strncmp.c:15>:
+                            ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                            ft_free_from_env() <int ft_free_from_env (t_env **head, t_env *env) at src/builtins/functions/ft_unset.c:15>:
+                                free()
+                    env_list_to_strarr() <char **env_list_to_strarr (t_mini *data) at src/utils/strarr_utils.c:30>:
+                        malloc()
+                        count_env_nodes() <int count_env_nodes (t_env *env_list) at src/utils/strarr_utils.c:15>
+                        free_data_and_exit() <void free_data_and_exit (t_mini *data, int exit_code) at src/utils/free_memory.c:59>:
+                            free()
+                            free_strarr() <void free_strarr (char **strarr) at src/utils/free_memory.c:15>:
+                                free()
+                            free_lexer_list() <void free_lexer_list (t_lexer **lexer_list) at src/utils/free_memory.c:44>:
+                                free_node_lexer() <void free_node_lexer (t_lexer **node) at src/lexer/list_utils_lexer.c:15>:
+                                    free()
+                            free_parser_list() <void free_parser_list (t_parser **parser_list) at src/utils/free_memory.c:29>:
+                                free_node_parser() <void free_node_parser (t_parser **node) at src/parser/list_utils_parser.c:30>:
+                                    free_strarr() <void free_strarr (char **strarr) at src/utils/free_memory.c:15>:
+                                        free()
+                                    free()
+                            free_env_list() <void free_env_list (t_env *env) at src/builtins/utils/free_utils.c:15>:
+                                free()
+                            exit()
+                        ft_strdup() <char *ft_strdup (const char *s) at libs/libft/ft_strdup.c:15>:
+                            ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                            malloc()
+                        ft_strjoin() <char *ft_strjoin (char const *s1, char const *s2) at libs/libft/ft_strjoin.c:15>:
+                            ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                            malloc()
+                    path_finder() <char *path_finder (char *cmd, char **env) at src/executor/path_finder.c:77>:
+                        access() <int access (const char *__name, int __type) at /usr/include/unistd.h:287>
+                        ft_strdup() <char *ft_strdup (const char *s) at libs/libft/ft_strdup.c:15>:
+                            ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                            malloc()
+                        find_path_string() <char *find_path_string (char **env) at src/executor/path_finder.c:59>:
+                            ft_strnstr() <char *ft_strnstr (const char *str, const char *to_find, size_t n) at libs/libft/ft_strnstr.c:15>
+                        ft_split() <char **ft_split (char const *s, char c) at libs/libft/ft_split.c:56>:
+                            malloc()
+                            string_count() <int string_count (char const *s, char c) at libs/libft/ft_split.c:15>
+                            str_len() <int str_len (char const *str, char c, int i) at libs/libft/ft_split.c:36>
+                            ft_substr() <char *ft_substr (char const *s, unsigned int start, size_t len) at libs/libft/ft_substr.c:15>:
+                                ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                ft_strdup() <char *ft_strdup (const char *s) at libs/libft/ft_strdup.c:15>:
+                                    ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                                    malloc()
+                                malloc()
+                            free_array() <void free_array (char **array, int j) at libs/libft/ft_split.c:49>:
+                                free()
+                        path_checker() <char *path_checker (char **all_path, char *cmd) at src/executor/path_finder.c:36>:
+                            malloc()
+                            ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                            ft_strcpy() <char *ft_strcpy (char *dest, char *src) at src/utils/str_utils.c:60>
+                            ft_strcat() <char *ft_strcat (char *dest, char *src) at src/utils/str_utils.c:40>
+                            access() <int access (const char *__name, int __type) at /usr/include/unistd.h:287>
+                            free()
+                        free_strarr() <void free_strarr (char **strarr) at src/utils/free_memory.c:15>:
+                            free()
+                    path_error() <void path_error (char **commands) at src/executor/path_finder.c:28>:
+                        ft_putstr_fd() <void ft_putstr_fd (char *s, int fd) at libs/libft/ft_putstr_fd.c:15>:
+                            write() <ssize_t write (int __fd, const void *__buf, size_t __n) at /usr/include/unistd.h:378>
+                            ft_strlen() <size_t ft_strlen (const char *string) at libs/libft/ft_strlen.c:15>
+                        free_strarr() <void free_strarr (char **strarr) at src/utils/free_memory.c:15>:
+                            free()
+                        exit()
+                    execve() <int execve (const char *__path, char *const __argv[], char *const __envp[]) at /usr/include/unistd.h:572>
+                    free_strarr() <void free_strarr (char **strarr) at src/utils/free_memory.c:15>:
+                        free()
+                waitpid()
+                printf()
+            remove_heredoc() <void remove_heredoc (void) at src/executor/redirections.c:16>:
+                opendir()
+                perror()
+                readdir()
+                strncmp() <int strncmp (const char *__s1, const char *__s2, size_t __n) at /usr/include/string.h:159>
+                ft_strcpy() <char *ft_strcpy (char *dest, char *src) at src/utils/str_utils.c:60>
+                ft_strcat() <char *ft_strcat (char *dest, char *src) at src/utils/str_utils.c:40>
+                unlink()
+                closedir()
