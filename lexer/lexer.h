@@ -6,7 +6,7 @@
 /*   By: mmusic <mmusic@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 19:41:13 by mmusic            #+#    #+#             */
-/*   Updated: 2025/04/10 17:06:13 by mmusic           ###   ########.fr       */
+/*   Updated: 2025/05/06 19:05:04 by mmusic           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,18 @@
 #include <unistd.h>             // write(), access()
 #include <string.h>             // strerror()
 #include <stdio.h>
+#include "../listlib/list.h"  // t_list, t_list_el
+
+// ANSI color codes
+#define RESET "\033[0m"
+#define BOLD "\033[1m"
+#define RED "\033[31m"
+#define GREEN "\033[32m"
+#define YELLOW "\033[33m"
+#define BLUE "\033[34m"
+#define MAGENTA "\033[35m"
+#define CYAN "\033[36m"
+#define WHITE "\033[37m"
 
 typedef enum {
     TOKEN_WORD,
@@ -44,6 +56,23 @@ typedef struct s_token {
     t_subtoken *subtoken;          
     struct s_token *next;  
 } t_token;
+
+typedef struct s_redirection {
+    t_token_type type;         // e.g., TOKEN_REDIRECT_IN, TOKEN_HEREDOC
+    char         *filename;    // The target file or heredoc delimiter
+    t_list_el    *next;     // If you make a linked list of redirections
+    t_list_el    *prev;
+} t_redirection;
+
+// Structure to represent a single simple command
+typedef struct s_command {
+    char          **args;         // Array of strings: command and its arguments (e.g., {"ls", "-l", NULL})
+    t_list        *redirections;  // Linked list of t_redirection structs
+    int           is_builtin;   // Flag: 0 or 1
+    char          *heredoc_name; // If you handle heredocs by writing to temp files
+    struct s_command *next;       // For pipelines: next command
+    struct s_command *prev;       // For pipelines: previous command (optional, but good for listlib)
+} t_command;
 
 // String utils (utils.c)
 char *ft_strdup(char *value);
