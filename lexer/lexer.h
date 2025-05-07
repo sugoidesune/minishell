@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmusic <mmusic@student.42.fr>              +#+  +:+       +#+        */
+/*   By: matej <matej@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 19:41:13 by mmusic            #+#    #+#             */
-/*   Updated: 2025/05/06 19:05:04 by mmusic           ###   ########.fr       */
+/*   Updated: 2025/05/07 16:27:27 by matej            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ typedef struct s_redirection {
 typedef struct s_command {
     char          **args;         // Array of strings: command and its arguments (e.g., {"ls", "-l", NULL})
     t_list        *redirections;  // Linked list of t_redirection structs
-    int           is_builtin;   // Flag: 0 or 1
     char          *heredoc_name; // If you handle heredocs by writing to temp files
     struct s_command *next;       // For pipelines: next command
     struct s_command *prev;       // For pipelines: previous command (optional, but good for listlib)
