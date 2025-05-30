@@ -14,23 +14,25 @@ Here’s a high-level overview of the puzzle pieces that make up Minishell. Each
 
 ### 2. Parse the Raw Command into Tokens
 **Goal**: Break the raw command into manageable pieces (tokens) that represent commands, arguments, and operators so we can understand its structure.  
-- We split the raw command on spaces and special characters (e.g., `|`, `<`, `>`), respecting quotes (`'` and `"`) to avoid splitting inside quoted sequences.  
-- We handle expansions:  
+- We split the raw command on spaces and special characters (e.g., `|`, `<`, `>`), respecting quotes (`'` and `"`) to avoid splitting inside quoted sequences. This is primarily the **lexer's** job.
+- The lexer handles expansions:  
   - Replace `$VAR` with environment variable values using `getenv`.  
   - Replace `$?` with the exit status of the last command (tracked globally).  
-- We categorize tokens into commands, arguments, and operators (e.g., pipes, redirections).  
-  - This allows us to build a structured representation (let’s call it the **token list**).  
-- The final token list is a sequence of meaningful units ready for execution planning.  
+- The lexer categorizes these pieces into tokens (e.g., `TOKEN_WORD`, `TOKEN_PIPE`, `TOKEN_REDIRECT_IN`).
+  - This results in a flat list of tokens (let’s call it the **token list**).  
+- The final token list is a sequence of categorized units ready for structural parsing.  
 
 ---
 
-### 3. Build an Execution Plan
-**Goal**: Organize the token list into a plan (let’s call it the **command structure**) that defines how commands, pipes, and redirections will be executed.  
-- We group tokens into individual commands (e.g., `ls -l | grep txt` becomes two commands: `ls -l` and `grep txt`).  
-- We identify redirections (`<`, `>`, `>>`, `<<`) and their targets (files or delimiters).  
-- We detect pipes (`|`) and link commands accordingly.  
-- For each command, we determine if it’s a built-in (e.g., `cd`, `echo`) or an external program needing PATH resolution with `access`.  
-- The final command structure is a tree or list of commands with their arguments, redirections, and pipe relationships.  
+### 3. Build an Execution Plan (Command Structure)
+**Goal**: Transform the flat **token list** into a structured representation (let’s call it the **command structure** or command table) that defines how commands, pipes, and redirections will be executed. This is the **parser's** job.
+- The parser iterates through the token list.
+- It groups tokens into individual `t_command` structures. Each `t_command` represents a simple command in a potential pipeline.
+  - `TOKEN_WORD`s are collected into the `args` array of a `t_command` (e.g., `ls -l` becomes `args = {"ls", "-l", NULL}`).
+- It identifies redirection tokens (`TOKEN_REDIRECT_IN`, `TOKEN_REDIRECT_OUT`, `TOKEN_APPEND`, `TOKEN_HEREDOC`) and their associated filenames (which follow as `TOKEN_WORD`). This information is stored within each `t_command`'s `redirections` list.
+- It detects `TOKEN_PIPE` tokens. A pipe signifies the end of the current `t_command` and the beginning of a new one, linking them together (e.g., `cmd1 | cmd2`).
+- For each command, the parser might also flag if it’s a built-in (e.g., `cd`, `echo`) for later execution.
+- The final command structure is typically a linked list of `t_command` structs, where each struct contains its arguments, redirections, and links to the next/previous command in a pipeline.
 
 ---
 
