@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgiambon <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tbatis <tbatis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/11 12:29:12 by rgiambon          #+#    #+#             */
-/*   Updated: 2024/06/14 14:25:48 by rgiambon         ###   ########.fr       */
+/*   Created: 2024/09/10 13:43:29 by tbatis            #+#    #+#             */
+/*   Updated: 2024/09/10 16:20:42 by tbatis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,31 @@
 
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	char			*str;
-	unsigned int	i;
+	int		len;
+	char	*str;
+	int		i;
 
-	if (!s || !f)
-		return (0);
-	str = (char *)malloc((ft_strlen(s) + 1) * sizeof(char));
-	if (!str)
-		return (0);
 	i = 0;
-	while (s[i])
+	len = ft_strlen(s);
+	str = (char *)malloc(sizeof(char) * len + 1);
+	if (!str)
+		return (NULL);
+	str[len] = '\0';
+	while (i < len)
 	{
-		str[i] = (*f)(i, s[i]);
+		str[i] = f(i, s[i]);
 		i++;
 	}
-	str[i] = '\0';
 	return (str);
 }
+
+/*
+char	ft_tupperware(unsigned int i, char c)
+{
+	printf("index: %d char: %c\n", i, c);
+	return (c - 32);
+}
+int	main(void)
+{
+	printf("%s", ft_strmapi("hello", ft_tupperware));
+} */

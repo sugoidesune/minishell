@@ -3,36 +3,74 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgiambon <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tbatis <tbatis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/10 14:19:49 by rgiambon          #+#    #+#             */
-/*   Updated: 2024/06/14 12:56:16 by rgiambon         ###   ########.fr       */
+/*   Created: 2024/09/02 13:43:43 by tbatis            #+#    #+#             */
+/*   Updated: 2025/02/18 20:00:04 by tbatis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-int	ft_atoi(const char *str)
+static int	is_sign(char str)
 {
-	int	i;
-	int	result;
+	if (str == '+' || str == '-')
+		return (1);
+	return (0);
+}
+
+static int	parse_sign(char *str)
+{
 	int	sign;
 
-	i = 0;
 	sign = 1;
-	result = 0;
-	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
-		i++;
-	if (str[i] == '+' || str[i] == '-')
+	while (*str == '+' || *str == '-')
 	{
-		if (str[i] == '-')
-			sign = -1;
-		i++;
+		if (*str == '-')
+		{
+			sign = -sign;
+		}
+		str++;
 	}
-	while (ft_isdigit(str[i]))
+	return (sign);
+}
+
+static long	iter_atoi(char *str)
+{
+	long	num;
+
+	num = 0;
+	while (*str && *str >= '0' && *str <= '9')
 	{
-		result = result * 10 + (str[i] - 48);
-		i++;
+		num = num * 10;
+		num = num + (*str - 48);
+		str++;
 	}
-	return (result * sign);
+	return (num);
+}
+
+int	ft_atoi(char *str)
+{
+	int	sign_int;
+	int	raw_number;
+
+	while ((*str >= 9 && *str <= 13) || *str == 32)
+		str++;
+	sign_int = parse_sign(str);
+	while (is_sign(*str))
+		str++;
+	raw_number = (int)iter_atoi(str);
+	return (raw_number * sign_int);
+}
+
+long	ft_atol(char *str)
+{
+	int		sign_int;
+	long	raw_number;
+
+	while ((*str >= 9 && *str <= 13) || *str == 32)
+		str++;
+	sign_int = parse_sign(str);
+	while (is_sign(*str))
+		str++;
+	raw_number = iter_atoi(str);
+	return (raw_number * sign_int);
 }

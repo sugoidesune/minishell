@@ -6,7 +6,7 @@
 /*   By: tbatis <tbatis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 14:38:32 by tbatis            #+#    #+#             */
-/*   Updated: 2025/06/05 15:31:54 by tbatis           ###   ########.fr       */
+/*   Updated: 2025/06/11 20:18:09 by tbatis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,6 @@
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
 # endif
-
-# define ERR_MALLOC 1
-# define ERR_READ 2
-# define ERR_OPEN 3
 
 char	*get_next_line(int fd);
 size_t	ft_strlen(const char *s);

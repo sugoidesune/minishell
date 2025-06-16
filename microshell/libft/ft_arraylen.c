@@ -1,16 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalpha.c                                       :+:      :+:    :+:   */
+/*   ft_arraylen.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tbatis <tbatis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/02 13:10:01 by tbatis            #+#    #+#             */
-/*   Updated: 2024/09/09 15:58:58 by tbatis           ###   ########.fr       */
+/*   Created: 2025/03/02 15:04:40 by tbatis            #+#    #+#             */
+/*   Updated: 2025/03/02 15:04:52 by tbatis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isalpha(int c)
+#include "libft.h"
+
+int	ft_arraylen(char **array)
 {
-	return ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'));
+	int	i;
+
+	i = 0;
+	if (array == NULL)
+		return (-1);
+	while (array && array[i])
+		i++;
+	return (i);
 }

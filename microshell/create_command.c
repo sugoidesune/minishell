@@ -6,7 +6,7 @@
 /*   By: tbatis <tbatis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 17:19:47 by tbatis            #+#    #+#             */
-/*   Updated: 2025/06/05 22:16:16 by tbatis           ###   ########.fr       */
+/*   Updated: 2025/06/16 19:20:59 by tbatis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ t_list *create_input_1(void)
         }
         cmd1_cat->args = args_cat;
         cmd1_cat->to_be_piped = true;
-        cmd1_cat->to_be_redirected = false;
+        cmd1_cat->redirection = 0;
+        cmd1_cat->command_index = 0;
         ft_list_append_new(list_instance, cmd1_cat);
     }
 
@@ -69,12 +70,190 @@ t_list *create_input_1(void)
         }
         cmd2_rev->args = args_rev;
         cmd2_rev->to_be_piped = false;
-        cmd2_rev->to_be_redirected = false;
+        cmd2_rev->redirection = 0;
+        cmd2_rev->command_index = 1;
         ft_list_append_new(list_instance, cmd2_rev);
     }
     
     return (list_instance);
 }
+
+t_list *create_input_2(void)
+{
+    t_list      *list_instance;
+    t_command   *cmd1_ls;
+    t_command   *cmd2_grep;
+    t_command   *cmd3_wc;
+    char        **args_ls;
+    char        **args_grep;
+    char        **args_wc;
+
+    list_instance = ft_new_list();
+    if (list_instance == NULL)
+        return (NULL);
+    
+    cmd1_ls = NULL;
+    cmd2_grep = NULL;
+    cmd3_wc = NULL;
+    args_ls = NULL;
+    args_grep = NULL;
+    args_wc = NULL;
+
+    // Create t_command for "ls -la" (tests PATH lookup)
+    cmd1_ls = malloc(sizeof(t_command));
+    if (cmd1_ls != NULL)
+    {
+        cmd1_ls->command_name = ft_strdup("ls");
+        args_ls = malloc(sizeof(char*) * 3);
+        if (args_ls != NULL)
+        {
+            args_ls[0] = ft_strdup("ls");
+            args_ls[1] = ft_strdup("-la");
+            args_ls[2] = NULL;
+        }
+        cmd1_ls->args = args_ls;
+        cmd1_ls->to_be_piped = true;
+        cmd1_ls->redirection = 0;
+        cmd1_ls->command_index = 0;
+        ft_list_append_new(list_instance, cmd1_ls);
+    }
+
+    // Create t_command for "grep .c" (tests PATH lookup and actually processes input)
+    cmd2_grep = malloc(sizeof(t_command));
+    if (cmd2_grep != NULL)
+    {
+        cmd2_grep->command_name = ft_strdup("grep");
+        args_grep = malloc(sizeof(char*) * 3);
+        if (args_grep != NULL)
+        {
+            args_grep[0] = ft_strdup("grep");
+            args_grep[1] = ft_strdup("\\.c");
+            args_grep[2] = NULL;
+        }
+        cmd2_grep->args = args_grep;
+        cmd2_grep->to_be_piped = true;
+        cmd2_grep->redirection = 0;
+        cmd2_grep->command_index = 1;
+        ft_list_append_new(list_instance, cmd2_grep);
+    }
+
+    // Create t_command for "wc -l" (tests PATH lookup and counts lines)
+    cmd3_wc = malloc(sizeof(t_command));
+    if (cmd3_wc != NULL)
+    {
+        cmd3_wc->command_name = ft_strdup("wc");
+        args_wc = malloc(sizeof(char*) * 3);
+        if (args_wc != NULL)
+        {
+            args_wc[0] = ft_strdup("wc");
+            args_wc[1] = ft_strdup("-l");
+            args_wc[2] = NULL;
+        }
+        cmd3_wc->args = args_wc;
+        cmd3_wc->to_be_piped = false;
+        cmd3_wc->redirection = 0;
+        cmd3_wc->command_index = 2;
+        ft_list_append_new(list_instance, cmd3_wc);
+    }
+    
+    return (list_instance);
+}
+
+t_list *create_input_3(void)
+{
+    t_list      *list_instance;
+    t_command   *cmd1_echo;
+    char        **args_echo;
+
+    list_instance = ft_new_list();
+    if (list_instance == NULL)
+        return (NULL);
+    
+    cmd1_echo = NULL;
+    args_echo = NULL;
+
+    // Create t_command for "echo haha >> .text"
+    cmd1_echo = malloc(sizeof(t_command));
+    if (cmd1_echo != NULL)
+    {
+        cmd1_echo->command_name = ft_strdup("echo");
+        args_echo = malloc(sizeof(char*) * 3);
+        if (args_echo != NULL)
+        {
+            args_echo[0] = ft_strdup("echo");
+            args_echo[1] = ft_strdup("haha");
+            args_echo[2] = NULL;
+        }
+        cmd1_echo->args = args_echo;
+        cmd1_echo->to_be_piped = false;
+        cmd1_echo->redirection = 2;
+        cmd1_echo->redirect_file = ft_strdup("TEXTFILE");
+        cmd1_echo->command_index = 0;
+        ft_list_append_new(list_instance, cmd1_echo);
+    }
+    
+    return (list_instance);
+}
+t_list *create_input_4(void)
+{
+    t_list      *list_instance;
+    t_command   *cmd1_ls;
+    t_command   *cmd2_grep;
+    char        **args_ls;
+    char        **args_grep;
+
+    list_instance = ft_new_list();
+    if (list_instance == NULL)
+        return (NULL);
+    
+    cmd1_ls = NULL;
+    cmd2_grep = NULL;
+    args_ls = NULL;
+    args_grep = NULL;
+
+    // Create t_command for "ls -la" (generates text output)
+    cmd1_ls = malloc(sizeof(t_command));
+    if (cmd1_ls != NULL)
+    {
+        cmd1_ls->command_name = ft_strdup("ls");
+        args_ls = malloc(sizeof(char*) * 3);
+        if (args_ls != NULL)
+        {
+            args_ls[0] = ft_strdup("ls");
+            args_ls[1] = ft_strdup("-la");
+            args_ls[2] = NULL;
+        }
+        cmd1_ls->args = args_ls;
+        cmd1_ls->to_be_piped = true;
+        cmd1_ls->redirection = 0;
+        cmd1_ls->command_index = 0;
+        ft_list_append_new(list_instance, cmd1_ls);
+    }
+
+    // Create t_command for "grep micro" (filters ls output and redirects to LOGS)
+    cmd2_grep = malloc(sizeof(t_command));
+    if (cmd2_grep != NULL)
+    {
+        cmd2_grep->command_name = ft_strdup("grep");
+        args_grep = malloc(sizeof(char*) * 3);
+        if (args_grep != NULL)
+        {
+            args_grep[0] = ft_strdup("grep");
+            args_grep[1] = ft_strdup("micro");
+            args_grep[2] = NULL;
+        }
+        cmd2_grep->args = args_grep;
+        cmd2_grep->to_be_piped = false;
+        cmd2_grep->redirection = 1;
+        cmd2_grep->redirect_file = ft_strdup("LOGS");
+        cmd2_grep->command_index = 1;
+        ft_list_append_new(list_instance, cmd2_grep);
+    }
+    
+    return (list_instance);
+}
+
+
 
 void print_command_list(t_list *list)
 {
@@ -99,7 +278,7 @@ void print_command_list(t_list *list)
 
         if (cmd->to_be_piped)
             printf("|piped|\n");
-        if (cmd->to_be_redirected)
+        if (cmd->redirection > 0)
             printf(">>redirect>>\n");
         
         printf("\n");

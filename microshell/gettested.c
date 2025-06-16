@@ -1,173 +1,446 @@
 // Function to capture user input
 
-
 // Assuming you have a libft.h with necessary function declarations
 #include "micro.h"
 
-int IS_CHILD_PROCESS = 0;
 
-// WARNING: execvp is not in the allowed functions list. You must use execve.
-// This requires implementing PATH searching logic if the command is not a full path.
-void execute_command(char **args)
+int	(*pipe_store(void))[2]
 {
-    pid_t	pid;
-    int		status;
+    static int	pipes[10][2];
 
-    pid = fork();
-    if (pid < 0)
-        perror("microshell");
-        
-    if (pid == IS_CHILD_PROCESS)
-    {
-        execvp(args[0], args);
-        perror("microshell");
-        exit(EXIT_FAILURE);
-    }
-    else
-    {
-        // Parent process
-        waitpid(pid, &status, 0);
-    }
+    return (pipes);
 }
 
-void print_pipes(int pipes[][2], int command_count)
+void reset_pipes(void)
 {
+	int (*pipes)[2];
 	int i;
 
-	for (i = 0; i < command_count - 1; i++)
+	pipes = pipe_store();
+	i = 0;
+	while (i < 10)
 	{
-		printf("Pipe %d: %d -> %d\n", i, pipes[i][0], pipes[i][1]);
+		pipes[i][0] = -1;
+		pipes[i][1] = -1;
+		i++;
 	}
 }
 
-// we set the last pipe to -1 to indicate no more pipes
-bool create_pipes(int pipes[][2], int command_count)
+// ...existing code...
+int	*get_pipe(int index)
 {
-        int i;
+    int (*pipes)[2];
+    
+    pipes = pipe_store();
+    return (pipes[index]);
+}
 
-        i = 0;
-        while (i < command_count - 1)
-        {
-            if (pipe(pipes[i]) == -1)
-            {
-                perror("pipe");
-                return (false);
-            }
-            i++;
-        }
-        pipes[i][0] = -1;
-        pipes[i][1] = -1;
-        return (true);
+// ai slop. temporary
+char **build_env_arr_temp(void)
+{
+    char **envp;
+    char *path_value;
+    char *path_entry;
+    int path_len;
+    int key_len;
+    
+    // Allocate array for environment variables (PATH + NULL terminator)
+    envp = malloc(sizeof(char *) * 2);
+    if (!envp)
+        return NULL;
+    
+    path_value = getenv("PATH");
+    if (!path_value)
+    {
+        envp[0] = ft_strdup("PATH=/bin:/usr/bin");
+        envp[1] = NULL;
+        return envp;
+    }
+    
+    // Calculate lengths
+    key_len = 5; // "PATH="
+    path_len = ft_strlen(path_value);
+    
+    // Allocate memory for "PATH=value"
+    path_entry = malloc(key_len + path_len + 1);
+    if (!path_entry)
+    {
+        free(envp);
+        return NULL;
+    }
+    
+    // Build the PATH entry
+    path_entry[0] = '\0';
+    ft_str_append(path_entry, "PATH=");
+    ft_str_append(path_entry, path_value);
+    
+    envp[0] = path_entry;
+    envp[1] = NULL;
+    
+    return envp;
+}
+
+void free_strarr(char **envp)
+{
+    int i;
+    
+    if (!envp)
+        return;
+    
+    i = 0;
+    while (envp[i] != NULL)
+    {
+        free(envp[i]);
+        i++;
+    }
+    free(envp);
+}
+
+// WARNING: execvp is not in the allowed functions list. You must use execve.
+// This requires implementing PATH searching logic if the command is not a full path.
+void	execute_command(char **args)
+{
+	pid_t	pid;
+	int		status;
+
+	pid = fork();
+	if (pid < 0)
+		perror("microshell");
+	if (pid == IS_CHILD_PROCESS)
+	{
+		execvp(args[0], args);
+		perror("microshell");
+		exit(EXIT_FAILURE);
+	}
+	else
+	{
+		// Parent process
+		waitpid(pid, &status, 0);
+	}
+}
+
+void	print_pipes(int pipes[][2], int command_count)
+{
+    int	i;
+
+    i = 0;
+    while (i < command_count - 1)
+    {
+        printf("Pipe %d: %d -> %d\n", i, pipes[i][0], pipes[i][1]);
+        i++;
+    }
+}
+
+// we set the last pipe to -1 to indicate no more pipes
+bool	create_pipes(int command_count)
+{
+	int	i;
+
+    int (*pipes)[2];
+    pipes = pipe_store();
+
+	i = 0;
+	while (i < command_count - 1)
+	{
+		if (pipe(pipes[i]) == -1)
+		{
+			perror("pipe");
+			return (false);
+		}
+		i++;
+	}
+	pipes[i][0] = -1;
+	pipes[i][1] = -1;
+	return (true);
 }
 
 // pipe array is terminated with -1
-// so as we loop we check if not smaller than 0
-void close_all_pipes(int pipes[][2])
+// so as we loop we check if not -1
+void	close_all_pipes(int pipes[][2])
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while (pipes[i][0] != -1)
+	i = 0;
+	while (pipes[i][0] != -1)
+	{
+		close(pipes[i][0]);
+		close(pipes[i][1]);
+		i++;
+	}
+}
+
+
+bool set_input_fd(int fd)
+{
+	if (dup2(fd, INPUT_FD) == -1)
+	{
+		// TODO: HANDLE THIS CASE
+		perror("microshell");
+		exit(EXIT_FAILURE);
+	}
+	return (true);
+}
+
+bool set_output_fd(int fd)
+{
+	if (dup2(fd, OUTPUT_FD) == -1)
+	{
+		// TODO: HANDLE THIS CASE
+		perror("microshell");
+		exit(EXIT_FAILURE);
+	}
+	return (true);
+}
+// connect read from previous pipe to input of current process
+// connect output of current process to write of current pipe
+void	setup_fd_for_fork(int pipes[][2], int command_index, bool to_be_piped, t_command *cmd)
+{
+	int fd;
+	if (command_index > 0)
+		set_input_fd(pipes[command_index - 1][0]); // Connect input from previous pipe
+    // We dont need to_be_piped we just need to know if this is the last command
+	if (to_be_piped)
+		set_output_fd(pipes[command_index][1]);
+
+    if (cmd->redirection == 1)
     {
-        close(pipes[i][0]);
-        close(pipes[i][1]);
-        i++;
+        fd = open(cmd->redirect_file, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+        if (fd == -1)
+        {
+            perror("microshell");
+            exit(1);
+        }
+        set_output_fd(fd);
+        close(fd);
+    }
+    else if (cmd->redirection == 2)
+    {
+        fd = open(cmd->redirect_file, O_WRONLY | O_CREAT | O_APPEND, 0644);
+        if (fd == -1)
+        {
+            perror("microshell");
+            exit(1);
+        }
+        set_output_fd(fd);
+        close(fd);
     }
 }
 
-void setup_input_pipe(int pipes[][2], int command_index)
+void	execute_single_command(t_command *cmd)
 {
-    if (command_index > 0)
-        dup2(pipes[command_index - 1][0], 0);
+    // TODO: SWITCH TO execve AND IMPLEMENT PATH LOGIC
+	//execvp(cmd->args[0], cmd->args);
+	char *path = path_finder(cmd->command_name);
+	if(!path){
+		perror("microshell");
+		exit(error_code());
+	}
+	char **envp = build_env_arr_temp();
+	if (!envp)
+	{
+		free(path);
+		perror("microshell");
+		exit(EXIT_FAILURE);
+	}
+	execve(path, cmd->args, envp);
+	free_strarr(envp);
+	free(path);
+	perror("microshell");
+	exit(1);
 }
 
-void setup_output_pipe(int pipes[][2], int command_index, bool to_be_piped)
+pid_t	fork_command(t_command *cmd)
 {
-    if (to_be_piped)
-        dup2(pipes[command_index][1], 1);
+	pid_t	pid;
+
+	pid = fork();
+	if (pid < 0)
+	{
+		perror("microshell");
+		return (-1);
+	}
+	if (pid == IS_CHILD_PROCESS)
+	{
+		setup_fd_for_fork(pipe_store(), cmd->command_index, cmd->to_be_piped, cmd);
+		// since we reset pipes after each command, we can close all fds here
+		//if(cmd->to_be_piped || cmd->command_index > 0)
+		close_all_pipes(pipe_store());
+		execute_single_command(cmd);
+	}
+	else {
+		// Parent process
+		cmd->pid = pid;
+	}
+	return (pid);
 }
 
-void execute_single_command(t_command *cmd, int pipes[][2], int command_index, int pipe_count)
+void	wait_for_all_children(int command_count)
 {
-    setup_input_pipe(pipes, command_index);
-    setup_output_pipe(pipes, command_index, cmd->to_be_piped);
-    close_all_pipes(pipes);
-    execvp(cmd->args[0], cmd->args);
-    perror("microshell");
-    exit(1);
+	int	status;
+	int	i;
+
+	i = 0;
+	while (i < command_count)
+	{
+		wait(&status);
+		i++;
+	}
 }
 
-pid_t fork_command(t_command *cmd, int pipes[][2], int command_index, int pipe_count)
-{
-    pid_t pid;
 
-    pid = fork();
-    if (pid < 0)
+
+// void	set_pipe(int index, int read_fd, int write_fd)
+// {
+//     (*pipe_store())[index][0] = read_fd;
+//     (*pipe_store())[index][1] = write_fd;
+// }
+
+// int	get_pipe_read(int index)
+// {
+//     return ((*pipe_store())[index][0]);
+// }
+
+// int	get_pipe_write(int index)
+// {
+//     return ((*pipe_store())[index][1]);
+// }
+
+// void	mark_pipe_end(int index)
+// {
+//     (*pipe_store())[index][0] = -1;
+//     (*pipe_store())[index][1] = -1;
+// }
+
+// bool	is_pipe_end(int index)
+// {
+//     return ((*pipe_store())[index][0] == -1);
+// }
+
+void for_each_command(t_list *commands, void (*func)(t_command *))
+{
+    t_list_el	*current;
+    t_command	*cmd;
+
+    current = commands->head;
+    while (current != NULL)
     {
-        perror("microshell");
-        return (-1);
-    }
-    if (pid == IS_CHILD_PROCESS)
-        execute_single_command(cmd, pipes, command_index, pipe_count);
-    return (pid);
-}
-
-void wait_for_all_children(int command_count)
-{
-    int status;
-    int i;
-
-    i = 0;
-    while (i < command_count)
-    {
-        wait(&status);
-        i++;
+        cmd = current->content;
+        func(cmd);
+        current = current->next;
     }
 }
 
-void execute_commands(t_list *commands)
+void	execute_commands(t_list *commands)
 {
-    t_list_el *current_command;
-    t_command *cmd;
-    int pipes[10][2]; // SET MAX COMMAND COUNT HERE
+	t_list_el	*current_command;
+	t_command	*cmd;
+	int			command_count;
+
+	current_command = commands->head;
+	command_count = count_commands(commands);
+
+	if (command_count > 1)
+		if (!create_pipes(command_count))
+			return ;
+    for_each_command(commands, (void (*)(t_command *))fork_command);
+	if (command_count > 1)
+		close_all_pipes(pipe_store());
+	wait_for_all_children(command_count);
+}
+
+
+
+int main3(void)
+{
+    t_list *input_two;
     int command_count;
-    int command_index;
-    int pipe_count;
 
-    current_command = commands->head;
-    command_count = count_commands(commands);
-    command_index = 0;
-    pipe_count = command_count - 1;
-
-
-    if (command_count > 1)
-        if (!create_pipes(pipes, command_count))
-            return;
-
-    while (current_command != NULL)
-    {
-        cmd = current_command->content;
-        fork_command(cmd, pipes, command_index, pipe_count);
-        current_command = current_command->next;
-        command_index++;
-    }
-
-    if (command_count > 1)
-        close_all_pipes(pipes, pipe_count);
-    wait_for_all_children(command_count);
+    printf("=== Testing PATH finder and environment functions ===\n");
+    
+    input_two = create_input_2();
+    command_count = count_commands(input_two);
+    printf("Command count: %d\n", command_count);
+    
+    print_command_list(input_two);
+    printf("Executing pipeline: ls -la | grep \\.c | wc -l\n");
+    printf("Expected output: Number of .c files in current directory\n");
+    printf("vvvvvvvv starting here vvvvvv\n");
+    
+    execute_commands(input_two);
+    
+    return (0);
 }
 
-int	main(void)
+
+
+int main(void)
+{
+    char *input;
+    t_list *commands;
+
+    while (1)
+    {
+        input = readline("minishell> ");
+        
+        if (input == NULL)
+        {
+            printf("\n");
+            break;
+        }
+        
+        if (*input)
+        {
+            add_history(input);
+        }
+        
+        commands = NULL;
+        
+        if (ft_strcmp(input, "a") == 0)
+        {
+            commands = create_input_1();
+        }
+        else if (ft_strcmp(input, "b") == 0)
+        {
+            commands = create_input_2();
+        }
+		else if (ft_strcmp(input, "c") == 0)
+        {
+            commands = create_input_3();
+        }
+				else if (ft_strcmp(input, "d") == 0)
+        {
+            commands = create_input_4();
+        }
+        else if (ft_strcmp(input, "exit") == 0)
+        {
+            free(input);
+            break;
+        }
+        
+        if (commands != NULL)
+        {
+			//printf("Executing commands from input: %s\n", input);
+            execute_commands(commands);
+        }
+        free(input);
+    }
+    
+    rl_clear_history();
+    return (0);
+}
+
+
+int	main1(void)
 {
 	char *input;
 	char *args[3];
-	//printf("%i\n", ft_atoi("399") + 2); // Print the PID of the shell process
+	// printf("%i\n", ft_atoi("399") + 2); // Print the PID of the shell process
 	t_list *input_one = create_input_1();
 	t_list_el *current = input_one->head;
 	t_command *cmd = current->content;
-	//printf("Command: %s\n", cmd->command_name);
-	//printf("Args: %s %s\n", cmd->args[0], cmd->args[1]);
-	//print_command_list(input_one);
+	// printf("Command: %s\n", cmd->command_name);
+	// printf("Args: %s %s\n", cmd->args[0], cmd->args[1]);
+	// print_command_list(input_one);
 	int command_count = count_commands(input_one);
 	printf("Command count: %d\n", command_count);
 	execute_commands(input_one);
@@ -175,9 +448,10 @@ int	main(void)
 	while (1)
 	{
 		input = capture_input();
-		if (input == NULL) // If capture_input returned NULL (EOF in non-TTY mode or ft_strtrim error)
+		if (input == NULL)
+			// If capture_input returned NULL (EOF in non-TTY mode or ft_strtrim error)
 		{
-			break; // Exit the loop and terminate the shell
+			break ; // Exit the loop and terminate the shell
 		}
 		// The tester instructions mention commenting out prints like "exit".
 		// The current Ctrl+D handling in interactive mode prints a newline and exits.
@@ -194,7 +468,9 @@ int	main(void)
 		{
 			execute_command(args);
 		}
-		free(input); // free(NULL) is safe if input became NULL (e.g. ft_strtrim error)
+		free(input);
+		reset_pipes();
+			// free(NULL) is safe if input became NULL (e.g. ft_strtrim error)
 	}
 	return (0);
 }

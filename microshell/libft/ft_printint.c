@@ -1,16 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalpha.c                                       :+:      :+:    :+:   */
+/*   ft_printint.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tbatis <tbatis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/02 13:10:01 by tbatis            #+#    #+#             */
-/*   Updated: 2024/09/09 15:58:58 by tbatis           ###   ########.fr       */
+/*   Created: 2025/03/02 02:19:50 by tbatis            #+#    #+#             */
+/*   Updated: 2025/03/02 15:00:53 by tbatis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isalpha(int c)
+#include "libft.h"
+
+void	ft_printint(int number)
 {
-	return ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'));
+	if (number == -2147483648)
+	{
+		write(1, "-2147483648", 11);
+		return ;
+	}
+	if (number < 0)
+	{
+		ft_putchar('-');
+		number = -number;
+	}
+	ft_putnbr(number);
 }

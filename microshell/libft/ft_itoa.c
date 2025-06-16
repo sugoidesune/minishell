@@ -3,98 +3,67 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgiambon <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tbatis <tbatis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/13 16:25:31 by rgiambon          #+#    #+#             */
-/*   Updated: 2024/06/22 09:46:01 by rgiambon         ###   ########.fr       */
+/*   Created: 2024/09/10 13:20:25 by tbatis            #+#    #+#             */
+/*   Updated: 2024/09/20 18:23:56 by tbatis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	count_digits(long nb)
+static int	ft_intlen(int n)
 {
-	int	result;
+	int	len;
 
-	if (nb == 0)
-		return (1);
-	if (nb < 0)
-		nb = nb * -1;
-	result = 0;
-	while (nb != 0)
+	len = 0;
+	if (n <= 0)
+		len = 1;
+	while (n)
 	{
-		result++;
-		nb = nb / 10;
+		n = n / 10;
+		len++;
 	}
-	return (result);
-}
-
-static void	fill_str(char *str, int digits, long nb)
-{
-	int	i;
-
-	if (nb < 0)
-	{
-		nb = nb * -1;
-		str[0] = '-';
-		digits++;
-	}
-	i = digits;
-	str[i] = '\0';
-	if (nb == 0)
-	{
-		str[0] = '0';
-		return ;
-	}
-	while (i > 0 && nb > 0)
-	{
-		str[--i] = (nb % 10) + 48;
-		nb = nb / 10;
-	}
+	return (len);
 }
 
 char	*ft_itoa(int n)
 {
+	int		len;
 	char	*str;
-	int		digits;
-	int		sign;
-	long	nb;
 
-	nb = n;
-	sign = 0;
-	if (nb < 0)
-		sign = 1;
-	digits = count_digits(nb);
-	str = (char *)malloc((digits + sign + 1) * sizeof(char));
-	if (str == 0)
-		return (0);
-	fill_str(str, digits, nb);
+	len = ft_intlen(n);
+	str = (char *)malloc(sizeof(char) * len + 1);
+	if (!str)
+		return (NULL);
+	str[len] = '\0';
+	str[0] = '0';
+	if (n == -2147483648)
+		return (ft_strlcpy(str, "-2147483648", 12), str);
+	if (n < 0)
+	{
+		str[0] = '-';
+		n = -n;
+	}
+	while (n)
+	{
+		str[len - 1] = n % 10 + '0';
+		n = n / 10;
+		len--;
+	}
 	return (str);
 }
-/*#include <stdlib.h>
-int main()
+
+/*
+int	main(void)
 {
-
-	int flag = 0;
-	
-	if (strcmp(ft_itoa(12345), "12345") != 0)
-		flag = ft_error("encountered issue handling positive integer.");
-	if (strcmp(ft_itoa(-12345), "-12345") != 0)
-		flag = ft_error("encountered issue handlig negative integer.");
-	if (strcmp(ft_itoa(0), "0") != 0)
-		flag = ft_error("encountered issue handling zero.");
-	char *rslt = ft_itoa((int)2147483648);
-	printf("result -> %s\n", rslt);
-	if (strcmp(ft_itoa(10000), "10000") != 0)
-		flag = ft_error("encountered issue handling integer ending with zeros.");
-	if (strcmp(ft_itoa(10042), "10042") != 0)
-		flag = ft_error("encountered issue handling integer containing zeros.");
-	if (strcmp(ft_itoa(-2147483648), "-2147483648") != 0)
-		flag = ft_error("ecountered issue handling INT_MIN.");
-	if (strcmp(ft_itoa(2147483647), "2147483647") != 0)
-		flag = ft_error("ecountered issue handling INT_MAX.");
-
-	if (flag == 0)
-		ft_okay();
- return 0;
-}*/
+	// printf() displays the string inside quotation
+	// printf("%d", 10/ 10);
+	printf("FULLSTR:%s\n", ft_itoa(123));
+	printf("FULLSTR:%s\n", ft_itoa(-123)); //–2147483648
+	printf("FULLSTR:%s\n", ft_itoa(-2147483648));
+	printf("FULLSTR:%s\n", ft_itoa(0));
+	printf("FULLSTR:%s\n", ft_itoa(10000));
+	printf("FULLSTR:%s\n", ft_itoa(2147483647));
+	return (0);
+} */

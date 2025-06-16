@@ -1,16 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalpha.c                                       :+:      :+:    :+:   */
+/*   ft_str_is_num.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tbatis <tbatis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/02 13:10:01 by tbatis            #+#    #+#             */
-/*   Updated: 2024/09/09 15:58:58 by tbatis           ###   ########.fr       */
+/*   Created: 2025/03/01 14:47:41 by tbatis            #+#    #+#             */
+/*   Updated: 2025/03/01 18:47:00 by tbatis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isalpha(int c)
+#include "libft.h"
+
+bool	ft_str_is_num(char *str)
 {
-	return ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'));
+	while (*str)
+	{
+		if (!ft_isdigit(*str))
+			return (false);
+		str++;
+	}
+	return (true);
 }
