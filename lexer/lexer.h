@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matej <matej@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tbatis <tbatis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 19:41:13 by mmusic            #+#    #+#             */
-/*   Updated: 2025/05/07 16:27:27 by matej            ###   ########.fr       */
+/*   Updated: 2025/06/17 20:54:26 by tbatis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@
 #include <string.h>             // strerror()
 #include <stdio.h>
 #include "../listlib/list.h"  // t_list, t_list_el
+// include for pid_t
+
+#include <sys/types.h>         // pid_t
 
 // ANSI color codes
 #define RESET "\033[0m"
@@ -66,9 +69,13 @@ typedef struct s_redirection {
 
 // Structure to represent a single simple command
 typedef struct s_command {
+    char          *command_name; // e.g., "ls", "cat", "grep" BUT STILL KEEP IT IN ARGS
     char          **args;         // Array of strings: command and its arguments (e.g., {"ls", "-l", NULL})
     t_list        *redirections;  // Linked list of t_redirection structs
     char          *heredoc_name; // If you handle heredocs by writing to temp files
+    int command_index; // Index in the pipeline (if part of a pipeline) basically index of the count of pipes.
+    bool to_be_piped;  // basically always true unless its the last command in the list
+    pid_t pid; // this gets populated when forking the process
     struct s_command *next;       // For pipelines: next command
     struct s_command *prev;       // For pipelines: previous command (optional, but good for listlib)
 } t_command;
