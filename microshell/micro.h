@@ -16,6 +16,10 @@
 # define INPUT_FD 0
 # define OUTPUT_FD 1
 
+#define REDIRECT_OUT_TRUNC 1
+#define REDIRECT_OUT_APPEND 2
+#define REDIRECT_IN 3
+
 // TEMP COMMAND MAKER
 typedef struct s_command
 {
@@ -32,6 +36,7 @@ t_list *create_input_1();
 t_list *create_input_2();
 t_list *create_input_3();
 t_list *create_input_4();
+t_list *create_input_5();
 void print_command_list(t_list *list);
 
 

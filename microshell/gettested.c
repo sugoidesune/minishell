@@ -226,10 +226,34 @@ void	setup_fd_for_fork(int pipes[][2], int command_index, bool to_be_piped, t_co
     }
 }
 
+bool is_builtin(char *cmd_name)
+{
+    // Check if the command is a built-in command
+    return (ft_strcmp(cmd_name, "echo") == 0);
+}
+
+bool execute_builtin(t_command *cmd)
+{
+	// Execute the built-in command
+	if (ft_strcmp(cmd->command_name, "echo") == 0)
+	{
+		bin_echo(cmd->args);
+		return true; // Indicate successful execution of built-in command
+	}
+	return false; // Not a built-in command
+}
+
 void	execute_single_command(t_command *cmd)
 {
-    // TODO: SWITCH TO execve AND IMPLEMENT PATH LOGIC
-	//execvp(cmd->args[0], cmd->args);
+	if (is_builtin(cmd->command_name))
+	{
+		if (!execute_builtin(cmd))
+		{
+			perror("microshell");
+			exit(EXIT_FAILURE);
+		}
+		exit(1); // Exit child process after executing builtin
+	}
 	char *path = path_finder(cmd->command_name);
 	if(!path){
 		perror("microshell");
@@ -407,9 +431,13 @@ int main(void)
         {
             commands = create_input_3();
         }
-				else if (ft_strcmp(input, "d") == 0)
+		else if (ft_strcmp(input, "d") == 0)
         {
             commands = create_input_4();
+        }
+        else if (ft_strcmp(input, "e") == 0)
+        {
+            commands = create_input_5();
         }
         else if (ft_strcmp(input, "exit") == 0)
         {

@@ -2,6 +2,14 @@
 
 bool bin_echo(char **args)
 {
-    printf("%s\n", args[1]);
+    int i = 1;
+    while (args[i] != NULL)
+    {
+        if (i > 1)
+            printf(" ");
+        printf("%s", args[i]);
+        i++;
+    }
+    printf("\n");
     return true;
 }

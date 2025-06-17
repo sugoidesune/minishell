@@ -6,7 +6,7 @@
 /*   By: tbatis <tbatis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 17:19:47 by tbatis            #+#    #+#             */
-/*   Updated: 2025/06/16 19:20:59 by tbatis           ###   ########.fr       */
+/*   Updated: 2025/06/17 18:29:21 by tbatis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -225,7 +225,7 @@ t_list *create_input_4(void)
         }
         cmd1_ls->args = args_ls;
         cmd1_ls->to_be_piped = true;
-        cmd1_ls->redirection = 0;
+        cmd1_ls->redirection = 3;
         cmd1_ls->command_index = 0;
         ft_list_append_new(list_instance, cmd1_ls);
     }
@@ -253,7 +253,63 @@ t_list *create_input_4(void)
     return (list_instance);
 }
 
+t_list *create_input_5(void)
+{
+    t_list      *list_instance;
+    t_command   *cmd1_echo;
+    t_command   *cmd2_cat;
+    char        **args_echo;
+    char        **args_cat;
 
+    list_instance = ft_new_list();
+    if (list_instance == NULL)
+        return (NULL);
+    
+    cmd1_echo = NULL;
+    cmd2_cat = NULL;
+    args_echo = NULL;
+    args_cat = NULL;
+
+    // Create t_command for "echo hello world"
+    cmd1_echo = malloc(sizeof(t_command));
+    if (cmd1_echo != NULL)
+    {
+        cmd1_echo->command_name = ft_strdup("echo");
+        args_echo = malloc(sizeof(char*) * 4);
+        if (args_echo != NULL)
+        {
+            args_echo[0] = ft_strdup("echo");
+            args_echo[1] = ft_strdup("hello");
+            args_echo[2] = ft_strdup("world");
+            args_echo[3] = NULL;
+        }
+        cmd1_echo->args = args_echo;
+        cmd1_echo->to_be_piped = true;
+        cmd1_echo->redirection = 0;
+        cmd1_echo->command_index = 0;
+        ft_list_append_new(list_instance, cmd1_echo);
+    }
+
+    // Create t_command for "cat" (receives input from pipe)
+    cmd2_cat = malloc(sizeof(t_command));
+    if (cmd2_cat != NULL)
+    {
+        cmd2_cat->command_name = ft_strdup("cat");
+        args_cat = malloc(sizeof(char*) * 2);
+        if (args_cat != NULL)
+        {
+            args_cat[0] = ft_strdup("cat");
+            args_cat[1] = NULL;
+        }
+        cmd2_cat->args = args_cat;
+        cmd2_cat->to_be_piped = false;
+        cmd2_cat->redirection = 0;
+        cmd2_cat->command_index = 1;
+        ft_list_append_new(list_instance, cmd2_cat);
+    }
+    
+    return (list_instance);
+}
 
 void print_command_list(t_list *list)
 {

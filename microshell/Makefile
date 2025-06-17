@@ -15,7 +15,7 @@ SRCS = gettested.c capture_input_micro.c gnl/error_lib.c gnl/get_next_line.c \
 	   listlib/list_lib_1.c listlib/list_lib_2.c \
 	   listlib/list_lib_3.c listlib/list_lib_4.c \
 	   create_command.c commands_lib.c \
-	   path_finder.c
+	   path_finder.c builtins.c\
 
 HEADER = micro.h
 
