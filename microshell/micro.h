@@ -20,14 +20,32 @@
 #define REDIRECT_OUT_APPEND 2
 #define REDIRECT_IN 3
 
+typedef enum {
+    TOKEN_WORD,
+    TOKEN_PIPE,
+    TOKEN_REDIRECT_IN,     // <
+    TOKEN_REDIRECT_OUT,    // >
+    TOKEN_HEREDOC,         // <<
+    TOKEN_APPEND,          // >>
+    TOKEN_SINGLE_QUOTE,
+    TOKEN_DOUBLE_QUOTE,
+    TOKEN_VARIABLE
+} t_token_type;
+
+typedef struct s_redirection {
+    t_token_type type;         // e.g., TOKEN_REDIRECT_IN, TOKEN_HEREDOC
+    char         *filename;    // The target file or heredoc delimiter
+    t_list_el    *next;     // If you make a linked list of redirections
+    t_list_el    *prev;
+} t_redirection;
+
 // TEMP COMMAND MAKER
 typedef struct s_command
 {
-    char	*command_name;
-    char	**args;
+    char	*command_name; // cat filename.txt
+    char	**args; // {"cat", "filename.txt", NULL}]
     bool to_be_piped;
-    int redirection;
-    char *redirect_file;
+    t_list        *redirections; 
     int command_index;
     pid_t pid;
 
@@ -37,7 +55,10 @@ t_list *create_input_2();
 t_list *create_input_3();
 t_list *create_input_4();
 t_list *create_input_5();
+t_list *create_input_6();
+t_list *create_input_7();
 void print_command_list(t_list *list);
+void add_redirection(t_list *redirection_list, t_token_type redirection_type, char *redirection_filename);
 
 
 //capture_input_micro.c

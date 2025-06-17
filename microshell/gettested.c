@@ -26,7 +26,33 @@ void reset_pipes(void)
 	}
 }
 
-// ...existing code...
+void print_pipe_store_values(void)
+{
+	int (*pipes)[2];
+	int i;
+
+	pipes = pipe_store();
+	printf("=== Pipe Store Values ===\n");
+	i = 0;
+	while (i < 10)
+	{
+		printf("Pipe[%d]: [%d, %d]\n", i, pipes[i][0], pipes[i][1]);
+		i++;
+	}
+	printf("========================\n");
+}
+
+void test_reset_pipes(void)
+{
+	printf("Before reset:\n");
+	print_pipe_store_values();
+	
+	reset_pipes();
+	
+	printf("After reset:\n");
+	print_pipe_store_values();
+}
+
 int	*get_pipe(int index)
 {
     int (*pipes)[2];
@@ -135,10 +161,11 @@ void	print_pipes(int pipes[][2], int command_count)
 bool	create_pipes(int command_count)
 {
 	int	i;
-
     int (*pipes)[2];
-    pipes = pipe_store();
 
+    pipes = pipe_store();
+	// important to intialize the first pipe_store to -1
+	reset_pipes();
 	i = 0;
 	while (i < command_count - 1)
 	{
@@ -149,8 +176,6 @@ bool	create_pipes(int command_count)
 		}
 		i++;
 	}
-	pipes[i][0] = -1;
-	pipes[i][1] = -1;
 	return (true);
 }
 
@@ -196,34 +221,62 @@ bool set_output_fd(int fd)
 void	setup_fd_for_fork(int pipes[][2], int command_index, bool to_be_piped, t_command *cmd)
 {
 	int fd;
+	t_list_el *redir_current;
+	t_redirection *redir;
+
 	if (command_index > 0)
 		set_input_fd(pipes[command_index - 1][0]); // Connect input from previous pipe
-    // We dont need to_be_piped we just need to know if this is the last command
 	if (to_be_piped)
 		set_output_fd(pipes[command_index][1]);
 
-    if (cmd->redirection == 1)
-    {
-        fd = open(cmd->redirect_file, O_WRONLY | O_CREAT | O_TRUNC, 0644);
-        if (fd == -1)
-        {
-            perror("microshell");
-            exit(1);
-        }
-        set_output_fd(fd);
-        close(fd);
-    }
-    else if (cmd->redirection == 2)
-    {
-        fd = open(cmd->redirect_file, O_WRONLY | O_CREAT | O_APPEND, 0644);
-        if (fd == -1)
-        {
-            perror("microshell");
-            exit(1);
-        }
-        set_output_fd(fd);
-        close(fd);
-    }
+	if (cmd->redirections != NULL)
+	{
+		redir_current = cmd->redirections->head;
+		while (redir_current != NULL)
+		{
+			redir = (t_redirection *)redir_current->content;
+			
+			if (redir->type == TOKEN_REDIRECT_OUT)
+			{
+				fd = open(redir->filename, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+				if (fd == -1)
+				{
+					perror("microshell");
+					exit(1);
+				}
+				set_output_fd(fd);
+				// we can close since it's already duplicated
+				// this is tried and tested and works
+				close(fd);
+			}
+			else if (redir->type == TOKEN_APPEND)
+			{
+				fd = open(redir->filename, O_WRONLY | O_CREAT | O_APPEND, 0644);
+				if (fd == -1)
+				{
+					perror("microshell");
+					exit(1);
+				}
+				set_output_fd(fd);
+				// we can close since it's already duplicated
+				close(fd);
+			}
+			else if (redir->type == TOKEN_REDIRECT_IN)
+			{
+				fd = open(redir->filename, O_RDONLY);
+				if (fd == -1)
+				{
+					perror("microshell");
+					exit(1);
+				}
+				set_input_fd(fd);
+				// we can close since it's already duplicated
+				close(fd);
+			}
+			
+			redir_current = redir_current->next;
+		}
+	}
 }
 
 bool is_builtin(char *cmd_name)
@@ -286,8 +339,6 @@ pid_t	fork_command(t_command *cmd)
 	if (pid == IS_CHILD_PROCESS)
 	{
 		setup_fd_for_fork(pipe_store(), cmd->command_index, cmd->to_be_piped, cmd);
-		// since we reset pipes after each command, we can close all fds here
-		//if(cmd->to_be_piped || cmd->command_index > 0)
 		close_all_pipes(pipe_store());
 		execute_single_command(cmd);
 	}
@@ -363,12 +414,13 @@ void	execute_commands(t_list *commands)
 	current_command = commands->head;
 	command_count = count_commands(commands);
 
-	if (command_count > 1)
-		if (!create_pipes(command_count))
-			return ;
+	if (!create_pipes(command_count)){
+		perror("error creating pipes");
+		return ;
+	}
+	print_pipe_store_values();
     for_each_command(commands, (void (*)(t_command *))fork_command);
-	if (command_count > 1)
-		close_all_pipes(pipe_store());
+	close_all_pipes(pipe_store());
 	wait_for_all_children(command_count);
 }
 
@@ -439,6 +491,14 @@ int main(void)
         {
             commands = create_input_5();
         }
+		else if (ft_strcmp(input, "f") == 0)
+        {
+            commands = create_input_6();
+        }
+        else if (ft_strcmp(input, "g") == 0)
+        {
+            commands = create_input_7();
+        }
         else if (ft_strcmp(input, "exit") == 0)
         {
             free(input);
@@ -497,7 +557,9 @@ int	main1(void)
 			execute_command(args);
 		}
 		free(input);
-		reset_pipes();
+
+
+
 			// free(NULL) is safe if input became NULL (e.g. ft_strtrim error)
 	}
 	return (0);
