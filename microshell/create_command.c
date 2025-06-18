@@ -6,7 +6,7 @@
 /*   By: tbatis <tbatis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 17:19:47 by tbatis            #+#    #+#             */
-/*   Updated: 2025/06/18 01:39:09 by tbatis           ###   ########.fr       */
+/*   Updated: 2025/06/18 02:22:26 by tbatis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,23 @@ void add_redirection(t_list *redirection_list, t_token_type redirection_type, ch
         new_redirection->filename = ft_strdup(redirection_filename);
         ft_list_append(redirection_list, (t_list_el *)new_redirection);
     }
+}
+
+t_command *create_command(char *command_name, char **args, bool to_be_piped, int command_index)
+{
+    t_command *new_command;
+
+    new_command = malloc(sizeof(t_command));
+    if (new_command == NULL)
+        return (NULL);
+    
+    new_command->command_name = ft_strdup(command_name);
+    new_command->args = args;
+    new_command->to_be_piped = to_be_piped;
+    new_command->redirections = NULL;
+    new_command->command_index = command_index;
+    
+    return (new_command);
 }
 
 // This function creates and returns a t_list by value.
@@ -46,49 +63,18 @@ t_list *create_input_1(void)
     list_instance = ft_new_list();
     if (list_instance == NULL)
         return (NULL);
-    
-    cmd1_cat = NULL;
-    cmd2_rev = NULL;
-    args_cat = NULL;
-    args_rev = NULL;
 
-    // Create t_command for "cat /hosts"
-    cmd1_cat = malloc(sizeof(t_command));
+    // Create args for "cat /hosts" using ft_split
+    args_cat = ft_split("cat ./hosts", ' ');
+    cmd1_cat = create_command("cat", args_cat, true, 0);
     if (cmd1_cat != NULL)
-    {
-        cmd1_cat->command_name = ft_strdup("cat");
-        args_cat = malloc(sizeof(char*) * 3);
-        if (args_cat != NULL)
-        {
-            args_cat[0] = ft_strdup("cat");
-            args_cat[1] = ft_strdup("./hosts");
-            args_cat[2] = NULL;
-        }
-        cmd1_cat->args = args_cat;
-        cmd1_cat->to_be_piped = true;
-        cmd1_cat->redirections = NULL;
-        cmd1_cat->command_index = 0;
         ft_list_append_new(list_instance, cmd1_cat);
-    }
 
-    // Create t_command for "rev"
-    cmd2_rev = malloc(sizeof(t_command));
+    // Create args for "rev" using ft_split
+    args_rev = ft_split("rev", ' ');
+    cmd2_rev = create_command("rev", args_rev, false, 1);
     if (cmd2_rev != NULL)
-    {
-        cmd2_rev->command_name = ft_strdup("rev");
-        args_rev = malloc(sizeof(char*) * 2);
-        if (args_rev != NULL)
-        {
-            args_rev[0] = ft_strdup("rev");
-            args_rev[1] = NULL;
-        }
-        cmd2_rev->args = args_rev;
-        cmd2_rev->to_be_piped = false;
-        cmd2_rev->redirections = NULL;
-        cmd2_rev->command_index = 1;
         ft_list_append_new(list_instance, cmd2_rev);
-    }
-    
     return (list_instance);
 }
 
