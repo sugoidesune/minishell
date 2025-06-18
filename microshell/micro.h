@@ -33,10 +33,10 @@ typedef enum {
 } t_token_type;
 
 typedef struct s_redirection {
+    t_list_el    *next;     // If you make a linked list of redirections
+    t_list_el    *previous;
     t_token_type type;         // e.g., TOKEN_REDIRECT_IN, TOKEN_HEREDOC
     char         *filename;    // The target file or heredoc delimiter
-    t_list_el    *next;     // If you make a linked list of redirections
-    t_list_el    *prev;
 } t_redirection;
 
 // TEMP COMMAND MAKER

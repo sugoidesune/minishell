@@ -221,7 +221,6 @@ bool set_output_fd(int fd)
 void	setup_fd_for_fork(int pipes[][2], int command_index, bool to_be_piped, t_command *cmd)
 {
 	int fd;
-	t_list_el *redir_current;
 	t_redirection *redir;
 
 	if (command_index > 0)
@@ -231,10 +230,9 @@ void	setup_fd_for_fork(int pipes[][2], int command_index, bool to_be_piped, t_co
 
 	if (cmd->redirections != NULL)
 	{
-		redir_current = cmd->redirections->head;
-		while (redir_current != NULL)
+		redir = (t_redirection *) cmd->redirections->head;
+		while (redir != NULL)
 		{
-			redir = (t_redirection *)redir_current->content;
 			
 			if (redir->type == TOKEN_REDIRECT_OUT)
 			{
@@ -273,8 +271,7 @@ void	setup_fd_for_fork(int pipes[][2], int command_index, bool to_be_piped, t_co
 				// we can close since it's already duplicated
 				close(fd);
 			}
-			
-			redir_current = redir_current->next;
+			redir = (t_redirection *) redir->next;
 		}
 	}
 }
@@ -418,7 +415,7 @@ void	execute_commands(t_list *commands)
 		perror("error creating pipes");
 		return ;
 	}
-	print_pipe_store_values();
+	//print_pipe_store_values();
     for_each_command(commands, (void (*)(t_command *))fork_command);
 	close_all_pipes(pipe_store());
 	wait_for_all_children(command_count);
@@ -473,30 +470,37 @@ int main(void)
         
         if (ft_strcmp(input, "a") == 0)
         {
+			printf("cat ./hosts | rev\n\n");
             commands = create_input_1();
         }
         else if (ft_strcmp(input, "b") == 0)
         {
+            printf("ls -la | grep \\.c | wc -l\n\n");
             commands = create_input_2();
         }
 		else if (ft_strcmp(input, "c") == 0)
         {
+            printf("echo haha >> TEXTFILE\n\n");
             commands = create_input_3();
         }
 		else if (ft_strcmp(input, "d") == 0)
         {
+            printf("ls -la | grep micro > LOGS\n\n");
             commands = create_input_4();
         }
         else if (ft_strcmp(input, "e") == 0)
         {
+            printf("echo hello world | cat\n\n");
             commands = create_input_5();
         }
 		else if (ft_strcmp(input, "f") == 0)
         {
+            printf("cat < input.txt | sort > output.txt\n\n");
             commands = create_input_6();
         }
         else if (ft_strcmp(input, "g") == 0)
         {
+            printf("cat < input1 >> output1 < input2 >> output2\n\n");
             commands = create_input_7();
         }
         else if (ft_strcmp(input, "exit") == 0)

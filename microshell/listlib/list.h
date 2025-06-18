@@ -6,9 +6,9 @@
 
 typedef struct s_list_el
 {
-	void				*content;
 	struct s_list_el	*next;
 	struct s_list_el	*previous;
+	void				*content;
 }						t_list_el;
 
 typedef struct s_list

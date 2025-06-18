@@ -6,7 +6,7 @@
 /*   By: tbatis <tbatis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 17:19:47 by tbatis            #+#    #+#             */
-/*   Updated: 2025/06/17 21:48:01 by tbatis           ###   ########.fr       */
+/*   Updated: 2025/06/18 01:39:09 by tbatis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void add_redirection(t_list *redirection_list, t_token_type redirection_type, ch
     {
         new_redirection->type = redirection_type;
         new_redirection->filename = ft_strdup(redirection_filename);
-        ft_list_append_new(redirection_list, new_redirection);
+        ft_list_append(redirection_list, (t_list_el *)new_redirection);
     }
 }
 
@@ -383,6 +383,21 @@ t_list *create_input_6(void)
     return (list_instance);
 }
 
+void print_redirections(t_list *redirections)
+{
+    t_redirection *current;
+
+    if (redirections == NULL || redirections->head == NULL)
+        return;
+
+    current = (t_redirection *)redirections->head;
+    while (current != NULL)
+    {
+        printf("Redirection type: %d, filename: %s\n", current->type, current->filename);
+        current = (t_redirection *)current->next;
+    }
+}
+
 t_list *create_input_7(void)
 {
     t_list      *list_instance;
@@ -417,6 +432,7 @@ t_list *create_input_7(void)
         add_redirection(cmd1_cat->redirections, TOKEN_APPEND, "output1");
         add_redirection(cmd1_cat->redirections, TOKEN_REDIRECT_IN, "input2");
         add_redirection(cmd1_cat->redirections, TOKEN_APPEND, "output2");
+        //print_redirections(cmd1_cat->redirections);
         
         cmd1_cat->command_index = 0;
         ft_list_append_new(list_instance, cmd1_cat);
